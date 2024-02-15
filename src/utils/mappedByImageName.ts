@@ -1,7 +1,7 @@
 import { mappedByImageNameModel } from '../interfaces/mappedByImageNameModel';
 import { breedingPalModel } from '../interfaces/breedingPalModel';
 
-export const mappedByImageName = (
+const mappedByImageName = (
 	data: breedingPalModel[] | undefined,
 	mappedData: mappedByImageNameModel[]
 ) => {
@@ -13,4 +13,16 @@ export const mappedByImageName = (
 			mappedData.push(element);
 		});
 	}
+};
+
+export const transformAndMapByImageName = (
+	data: breedingPalModel[] | undefined,
+	setMappedByImageNameResult: React.Dispatch<
+		React.SetStateAction<mappedByImageNameModel[]>
+	>
+) => {
+	if (!data) return [];
+	const mappedData: mappedByImageNameModel[] | undefined = [];
+	mappedByImageName(data, mappedData);
+	setMappedByImageNameResult(mappedData);
 };

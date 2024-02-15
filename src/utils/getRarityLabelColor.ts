@@ -1,4 +1,4 @@
-export const getBorderColor = (rarity: string): string => {
+export const getRarityLabelColor = (rarity: string): string => {
 	switch (rarity) {
 		case 'Common':
 			return '#7e7e7e';

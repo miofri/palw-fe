@@ -1,46 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
 import * as Styles from '../../styles/generalStyle';
-import { mappedByImageName } from '../../utils/mappedByImageName';
+import { transformAndMapByImageName } from '../../utils/mappedByImageName';
 import { findByCodeName } from '../../utils/findByCodeName';
 import { mappedByImageNameModel } from '../../interfaces/mappedByImageNameModel';
 import { getPalRarityLabel } from '../../utils/getPalRarityLabel';
 import { PalCardElements } from './PalCardElements';
-import { store } from '../../store/store';
-import { selectPalSlice } from '../../store/slices/selectPalSlice';
+import { RootState } from '../../store/store';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { useSelector } from 'react-redux';
+import { useSetActiveSlot } from '../customhooks/useSetPal';
 
 export const BreedingPalsList = () => {
 	const { data, error, isLoading } = useGetBreedingPalsQuery();
-	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
 	const [mappedByImageNameResult, setMappedByImageNameResult] = useState<
 		mappedByImageNameModel[]
 	>([]);
+	const setActiveSlot = useSetActiveSlot();
+	const activeSlot = useSelector(
+		(state: RootState) => state.selectPalActiveSlot.activeSlot
+	);
+	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
 
 	useEffect(() => {
 		if (data) {
-			const mappedData: mappedByImageNameModel[] | undefined = [];
-			mappedByImageName(data, mappedData);
-			setMappedByImageNameResult(mappedData);
+			transformAndMapByImageName(data, setMappedByImageNameResult);
 		}
 	}, [data]);
 
 	const handlePalCardClick = (breedingPal: breedingPalModel) => {
-		store.dispatch(selectPalSlice.actions.setPal1(breedingPal));
+		setActiveSlot(breedingPal, activeSlot);
 	};
-
-	if (isLoading) return <div>Loading...</div>;
-	if (error) {
-		if ('message' in error) {
-			return <div>Error: {error.message}</div>;
-		} else {
-			return <div>Error: Something went wrong</div>;
-		}
-	}
-	if (data)
-		return (
-			<Styles.PalCardsContainer>
-				{data.map((breedingPal) => (
+	return (
+		<Styles.PalCardsContainer>
+			{data ? (
+				data.map((breedingPal) => (
 					<Styles.PalCard
 						key={breedingPal.CodeName}
 						onClick={() => handlePalCardClick(breedingPal)}
@@ -63,10 +57,14 @@ export const BreedingPalsList = () => {
 						</Styles.PalCardRarityLabel>
 						<PalCardElements breedingPal={breedingPal} />
 					</Styles.PalCard>
-				))}
-			</Styles.PalCardsContainer>
-		);
-	else {
-		return <div>Something went wrong!</div>;
-	}
+				))
+			) : isLoading ? (
+				<div>Loading...</div>
+			) : error && 'message' in error ? (
+				<div>{error.message}</div>
+			) : (
+				<div>Something went wrong!</div>
+			)}
+		</Styles.PalCardsContainer>
+	);
 };

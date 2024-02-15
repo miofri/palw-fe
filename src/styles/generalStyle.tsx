@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors } from './theme';
 import { device } from './breakpoints';
-import { getBorderColor } from '../utils/getRarityLabelColor';
+import { getRarityLabelColor } from '../utils/getRarityLabelColor';
 
 export const Background = styled.div`
 	display: flex;
@@ -87,7 +87,7 @@ export const PalCardTitle = styled.h2`
 export const PalCardRarityLabel = styled.p<{ $rarity: string }>`
 	margin: auto;
 	width: 80%;
-	border: 0.1rem solid ${(props) => getBorderColor(props.$rarity)};
+	border: 0.1rem solid ${(props) => getRarityLabelColor(props.$rarity)};
 	border-radius: 1rem;
 `;
 
