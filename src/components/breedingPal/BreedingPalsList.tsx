@@ -48,7 +48,9 @@ export const BreedingPalsList = () => {
 							/>
 						</Styles.PalCardFigure>
 						<Styles.PalCardTitle>
-							{breedingPal.ZukanIndex}. {breedingPal.Name}
+							{breedingPal.ZukanIndex}.
+							<br />
+							{breedingPal.Name}
 						</Styles.PalCardTitle>
 						<Styles.PalCardRarityLabel
 							$rarity={getPalRarityLabel(breedingPal.Rarity)}

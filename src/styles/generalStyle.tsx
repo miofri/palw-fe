@@ -5,6 +5,7 @@ import { getRarityLabelColor } from '../utils/getRarityLabelColor';
 
 export const Background = styled.div`
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-color: #111827;
@@ -28,12 +29,12 @@ export const PalCardsContainer = styled.div`
 	overflow-y: scroll;
 	@media ${device.md} {
 		gap: 1vw;
-		width: 50vw;
+		width: 70vw;
 	}
 `;
 
 export const PalCard = styled.div`
-	width: 30vw;
+	width: 20vw;
 	min-height: 21.5vh;
 	padding: 0.2rem;
 	background-color: #1f2937;
@@ -51,12 +52,14 @@ export const PalCard = styled.div`
 		border-radius: 1.5vh;
 	}
 	@media ${device.md} {
-		width: 16vw;
+		width: 11vw;
+		min-height: 16vh;
 	}
 	@media ${device.lg} {
 		width: 8vw;
 	}
 	p {
+		font-size: 0.7rem;
 		text-align: center;
 	}
 `;
@@ -73,11 +76,11 @@ export const PalCardFigure = styled.figure`
 
 export const PalCardTitle = styled.h2`
 	text-align: center;
-	font-size: 1rem;
-	line-height: 1.8rem;
-	margin: 0;
+	font-size: 0.7rem;
+	line-height: 1rem;
+	margin: 0.4rem 0;
 	@media ${device.xs} {
-		font-size: 1.2rem;
+		font-size: 0.8rem;
 	}
 	@media ${device.md} {
 		font-size: 0.8rem;
