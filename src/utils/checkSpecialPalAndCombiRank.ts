@@ -1,4 +1,4 @@
-import { breedingPalModel } from '../interfaces/breedingPalModel';
+import { UpdateCombiRankModel } from '../components/breedingPal/SelectPals';
 import { breedingTable } from './data/specialPalBreedingTable';
 
 /**
@@ -10,18 +10,17 @@ import { breedingTable } from './data/specialPalBreedingTable';
 const specialPals = new Set(breedingTable.map((entry) => entry.result));
 
 export const checkSpecialPalAndCombiRank = (
-	smallerCombiRank: breedingPalModel | undefined,
-	biggerCombiRank: breedingPalModel | undefined,
+	updateCombiRank: UpdateCombiRankModel,
 	combiRank: number
 ) => {
 	const result =
-		combiRank - smallerCombiRank!.CombiRank <
-		biggerCombiRank!.CombiRank - combiRank
-			? specialPals.has(smallerCombiRank!.Name)
-				? biggerCombiRank
-				: smallerCombiRank
-			: specialPals.has(biggerCombiRank!.Name)
-			? smallerCombiRank
-			: biggerCombiRank;
+		combiRank - updateCombiRank.smallerCombiRank!.CombiRank <
+		updateCombiRank.biggerCombiRank!.CombiRank - combiRank
+			? specialPals.has(updateCombiRank.smallerCombiRank!.Name)
+				? updateCombiRank.biggerCombiRank
+				: updateCombiRank.smallerCombiRank
+			: specialPals.has(updateCombiRank.biggerCombiRank!.Name)
+			? updateCombiRank.smallerCombiRank
+			: updateCombiRank.biggerCombiRank;
 	return result;
 };

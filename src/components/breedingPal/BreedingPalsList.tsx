@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
 import * as Styles from '../../styles/generalStyle';
 import { transformAndMapByImageName } from '../../utils/mappedByImageName';
 import { findByCodeName } from '../../utils/findByCodeName';
-import { mappedByImageNameModel } from '../../interfaces/mappedByImageNameModel';
 import { getPalRarityLabel } from '../../utils/getPalRarityLabel';
 import { PalCardElements } from './PalCardElements';
 import { RootState } from '../../store/store';
@@ -12,19 +11,19 @@ import { useSelector } from 'react-redux';
 import { useSetActiveSlot } from '../customhooks/useSetPal';
 
 export const BreedingPalsList = () => {
+	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
 	const { data, error, isLoading } = useGetBreedingPalsQuery();
-	const [mappedByImageNameResult, setMappedByImageNameResult] = useState<
-		mappedByImageNameModel[]
-	>([]);
-	const setActiveSlot = useSetActiveSlot();
+	const mapPalByImageName = useSelector(
+		(state: RootState) => state.mapPalByImageName
+	);
 	const activeSlot = useSelector(
 		(state: RootState) => state.selectPalActiveSlot.activeSlot
 	);
-	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
+	const setActiveSlot = useSetActiveSlot();
 
 	useEffect(() => {
 		if (data) {
-			transformAndMapByImageName(data, setMappedByImageNameResult);
+			transformAndMapByImageName(data);
 		}
 	}, [data]);
 
@@ -42,7 +41,7 @@ export const BreedingPalsList = () => {
 						<Styles.PalCardFigure>
 							<img
 								src={`${imageUrl}${findByCodeName(
-									mappedByImageNameResult,
+									mapPalByImageName,
 									breedingPal.CodeName
 								)}`}
 							/>

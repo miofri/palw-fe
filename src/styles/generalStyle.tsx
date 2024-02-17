@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { colors } from './theme';
 import { device } from './breakpoints';
 import { getRarityLabelColor } from '../utils/getRarityLabelColor';
@@ -8,6 +8,7 @@ export const Background = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 3rem;
 	background-color: #111827;
 	transition: all 0.5s ease; // transition for the theme toggler
 	width: 100%;
@@ -18,18 +19,48 @@ export const Background = styled.div`
 	color: #fff;
 `;
 
-export const PalCardsContainer = styled.div`
+export const FlexRow = css`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+`;
+
+export const PalSelectionContainer = styled.div`
+	${FlexRow}
+	justify-content: center;
+	align-items: center;
+	width: fit-content;
+	height: fit-content;
+	@media ${device.md} {
+		gap: 0.4rem;
+	}
+	.sign {
+		font-size: 2rem;
+		font-weight: 900;
+		margin: 0;
+	}
+`;
+
+export const PalSelectionCard = styled.div<{ $isActive?: string }>`
+	width: 10rem;
+	height: 10rem;
+	border: ${(props) => (props.$isActive ? '#59d0f5' : '#36609b')} 2px solid;
+`;
+
+export const PalCardsContainer = styled.div`
+	${FlexRow}
 	justify-content: center;
 	gap: 3vw;
 	width: 90vw;
 	height: 60vh;
 	overflow-y: scroll;
-	@media ${device.md} {
+	@media ${device.sm} {
 		gap: 1vw;
 		width: 70vw;
+	}
+	@media ${device.md} {
+		gap: 1vw;
+		width: 50vw;
 	}
 `;
 
@@ -47,16 +78,16 @@ export const PalCard = styled.div`
 	}
 
 	@media ${device.sm} {
-		width: 26vw;
+		width: 10vw;
 		min-height: 18.5vh;
 		border-radius: 1.5vh;
 	}
 	@media ${device.md} {
-		width: 11vw;
+		width: 8vw;
 		min-height: 16vh;
 	}
 	@media ${device.lg} {
-		width: 8vw;
+		width: 6vw;
 	}
 	p {
 		font-size: 0.7rem;

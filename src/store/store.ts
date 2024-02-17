@@ -3,12 +3,14 @@ import { breedingPalApi } from './rtk-slices/breedingPalAPI';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { selectPalSlice } from './slices/selectPalSlice';
 import { selectPalActiveSlotSlice } from './slices/selectPalActiveSlotSlice';
+import { mapPalByImageNameSlice } from './slices/mapPalByImageNameSlice';
 
 export const store = configureStore({
 	reducer: {
 		[breedingPalApi.reducerPath]: breedingPalApi.reducer,
 		selectPal: selectPalSlice.reducer,
 		selectPalActiveSlot: selectPalActiveSlotSlice.reducer,
+		mapPalByImageName: mapPalByImageNameSlice.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(breedingPalApi.middleware),

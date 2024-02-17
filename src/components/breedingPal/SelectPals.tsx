@@ -12,43 +12,48 @@ import { findSmallerAndBigger_CombiRank } from '../../utils/findSmallerAndBigger
 import { findSmallerOrBigger_ZukanIndex } from '../../utils/findSmallerOrBigger_ZukanIndex';
 import { checkSpecialPalAndCombiRank } from '../../utils/checkSpecialPalAndCombiRank';
 import { findByRounding_CombiRank } from '../../utils/findByRounding_CombiRank';
-
+import * as Style from '../../styles/generalStyle';
+export interface UpdateCombiRankModel {
+	smallerCombiRank: breedingPalModel | undefined;
+	biggerCombiRank: breedingPalModel | undefined;
+}
 export const SelectPals = () => {
 	const { data } = useGetBreedingPalsQuery();
+	const activeSlot = useSelector(
+		(state: RootState) => state.selectPalActiveSlot.activeSlot
+	);
 	const selectedPals = useSelector(
 		(state: RootState) => state.selectPal.selectPals
 	);
+
+	//const mappedPalByImageName = useSelector(
+	//	(state: RootState) => state.mapPalByImageName
+	//);
 	const [breedingPalResult, setBreedingPalResult] = useState<
 		breedingPalModel | undefined
 	>(undefined);
+
 	const handleClick = (slot: activeSlotType) => {
 		store.dispatch(selectPalActiveSlotSlice.actions.changeActiveSlot(slot));
 	};
-
 	useEffect(() => {
-		// find the average between two pals for the child's combirank
 		if (selectedPals.pal1 && selectedPals.pal2) {
 			const combiRank = Math.floor(
 				(selectedPals.pal1.CombiRank + selectedPals.pal2.CombiRank + 1) / 2
 			);
-			if (combiRank.toString().endsWith('5')) {
-				let smallerCombiRank: breedingPalModel | undefined;
-				let biggerCombiRank: breedingPalModel | undefined;
-				findSmallerAndBigger_CombiRank(
-					smallerCombiRank,
-					biggerCombiRank,
-					data,
-					combiRank
-				);
+			if (selectedPals.pal1.CombiRank === selectedPals.pal2.CombiRank) {
+				setBreedingPalResult(selectedPals.pal1);
+			} else if (combiRank.toString().endsWith('5')) {
+				const updateCombiRank: UpdateCombiRankModel = {
+					smallerCombiRank: undefined,
+					biggerCombiRank: undefined,
+				};
+				findSmallerAndBigger_CombiRank(updateCombiRank, data, combiRank);
 				const result =
-					biggerCombiRank!.CombiRank - combiRank ===
-					combiRank - smallerCombiRank!.CombiRank
-						? findSmallerOrBigger_ZukanIndex(smallerCombiRank, biggerCombiRank)
-						: checkSpecialPalAndCombiRank(
-								smallerCombiRank,
-								biggerCombiRank,
-								combiRank
-						  );
+					updateCombiRank.biggerCombiRank!.CombiRank - combiRank ===
+					combiRank - updateCombiRank.smallerCombiRank!.CombiRank
+						? findSmallerOrBigger_ZukanIndex(updateCombiRank)
+						: checkSpecialPalAndCombiRank(updateCombiRank, combiRank);
 				setBreedingPalResult(result);
 			} else {
 				setBreedingPalResult(findByRounding_CombiRank(data, combiRank));
@@ -57,22 +62,22 @@ export const SelectPals = () => {
 	}, [selectedPals]);
 
 	return (
-		<>
-			<div
-				style={{ width: '100px', height: '100px', border: 'red 2px solid' }}
+		<Style.PalSelectionContainer>
+			<Style.PalSelectionCard
 				onClick={() => handleClick('slot1')}
+				$isActive={activeSlot === 'slot1' ? 'active' : ''}
 			>
 				{selectedPals.pal1?.Name}
-			</div>
-			<div
-				style={{ width: '100px', height: '100px', border: 'red 2px solid' }}
+			</Style.PalSelectionCard>
+			<div className="sign">+</div>
+			<Style.PalSelectionCard
 				onClick={() => handleClick('slot2')}
+				$isActive={activeSlot === 'slot2' ? 'active' : ''}
 			>
 				{selectedPals.pal2?.Name}
-			</div>
-			<div style={{ width: '100px', height: '100px', border: 'red 2px solid' }}>
-				{breedingPalResult?.Name}
-			</div>
-		</>
+			</Style.PalSelectionCard>
+			<div className="sign">=</div>
+			<Style.PalSelectionCard>{breedingPalResult?.Name}</Style.PalSelectionCard>
+		</Style.PalSelectionContainer>
 	);
 };
