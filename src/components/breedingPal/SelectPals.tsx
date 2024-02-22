@@ -90,7 +90,7 @@ export const SelectPals = () => {
 				) : (
 					<></>
 				)}
-				{selectedPals.pal1?.Name}
+				<h2>{selectedPals.pal1?.Name}</h2>
 			</Style.PalSelectionCard>
 			<div className="sign">+</div>
 			<Style.PalSelectionCard
@@ -108,7 +108,7 @@ export const SelectPals = () => {
 				) : (
 					<></>
 				)}
-				{selectedPals.pal2?.Name}
+				<h2>{selectedPals.pal2?.Name}</h2>
 			</Style.PalSelectionCard>
 			<div className="sign">=</div>
 			<Style.PalSelectionCard data-testid="palselect-result">
@@ -122,7 +122,7 @@ export const SelectPals = () => {
 				) : (
 					<></>
 				)}
-				{breedingPalResult?.Name}
+				<h2>{breedingPalResult?.Name}</h2>
 			</Style.PalSelectionCard>
 		</Style.PalSelectionContainer>
 	);

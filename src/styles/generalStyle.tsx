@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors } from './theme';
+import { lightThemeColors } from './theme';
 import { device } from './breakpoints';
 import { getRarityLabelColor } from '../utils/getRarityLabelColor';
 
@@ -9,13 +9,13 @@ export const Background = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 3rem;
-	background-color: #111827;
+	background-color: ${lightThemeColors.backgroundColor};
 	transition: all 0.5s ease; // transition for the theme toggler
 	width: 100%;
 	height: 100%;
 	min-height: 100vh;
 	min-width: 100vw;
-	color-scheme: dark;
+	color-scheme: light;
 	color: #fff;
 `;
 
@@ -49,11 +49,26 @@ export const PalSelectionCard = styled.div<{ $isActive?: string }>`
 	gap: 0.5rem;
 	width: 10rem;
 	height: 10rem;
-	border: ${(props) => (props.$isActive ? '#59d0f5' : '#36609b')} 2px solid;
+	border: ${(props) =>
+			props.$isActive
+				? `${lightThemeColors.activeBorderColor}`
+				: `${lightThemeColors.borderColor}`}
+		3px solid;
+	border-radius: 2rem;
+	background-color: ${lightThemeColors.cardBgColor};
 	> img {
 		width: 6rem;
-		border: ${(props) => (props.$isActive ? '#59d0f5' : '#36609b')} 2px solid;
+		border: ${(props) =>
+				props.$isActive
+					? `${lightThemeColors.activeBorderColor}`
+					: `${lightThemeColors.borderColor}`}
+			1px solid;
 		border-radius: 3rem;
+	}
+	> h2 {
+		margin: 0;
+		font-size: 1rem;
+		color: ${lightThemeColors.fontColor};
 	}
 `;
 
@@ -83,8 +98,8 @@ export const PalCard = styled.div`
 	height: 11.2rem;
 	padding-top: 0.2rem;
 
-	background-color: #1f2937;
-	border: 0.1rem solid ${colors.borderColor};
+	background-color: ${lightThemeColors.cardBgColor};
+	border: 2px solid ${lightThemeColors.borderColor};
 	border-radius: 1vh;
 
 	@media ${device.xs} {
@@ -116,7 +131,7 @@ export const PalCardFigure = styled.figure`
 	margin: 0.4rem auto auto auto;
 	width: 70%;
 	> img {
-		border: 0.1rem solid ${colors.borderColor};
+		border: 0.1rem solid ${lightThemeColors.borderColor};
 		border-radius: 3rem;
 		width: 100%;
 	}
@@ -128,6 +143,7 @@ export const PalCardTitle = styled.h2`
 	font-weight: 600;
 	line-height: 1rem;
 	margin: 0;
+	color: ${lightThemeColors.fontColor};
 	@media ${device.xs} {
 		font-size: 0.8rem;
 		font-weight: 500;
@@ -142,8 +158,11 @@ export const PalCardTitle = styled.h2`
 export const PalCardRarityLabel = styled.p<{ $rarity: string }>`
 	margin: auto;
 	width: 80%;
-	border: 0.1rem solid ${(props) => getRarityLabelColor(props.$rarity)};
+	padding: 0.1rem;
+	/*border: 0.1rem solid ${(props) => getRarityLabelColor(props.$rarity)};*/
 	border-radius: 1rem;
+	color: white;
+	background-color: ${(props) => getRarityLabelColor(props.$rarity)};
 `;
 
 export const PalCardElementLabel = styled.figure`
