@@ -42,9 +42,19 @@ export const PalSelectionContainer = styled.div`
 `;
 
 export const PalSelectionCard = styled.div<{ $isActive?: string }>`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
 	width: 10rem;
 	height: 10rem;
 	border: ${(props) => (props.$isActive ? '#59d0f5' : '#36609b')} 2px solid;
+	> img {
+		width: 6rem;
+		border: ${(props) => (props.$isActive ? '#59d0f5' : '#36609b')} 2px solid;
+		border-radius: 3rem;
+	}
 `;
 
 export const PalCardsContainer = styled.div`
@@ -52,8 +62,8 @@ export const PalCardsContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 3vw;
-	width: 90vw;
-	max-height: 60vh;
+	width: 80vw;
+	height: 30rem;
 	overflow-y: scroll;
 	@media ${device.sm} {
 		gap: 1vw;
@@ -69,7 +79,7 @@ export const PalCard = styled.div`
 	display: grid;
 	grid-template-rows: 3.5rem 4.2rem 1rem 2.4rem;
 	align-items: center;
-	width: 20vw;
+	width: 4rem;
 	height: 11.2rem;
 	padding-top: 0.2rem;
 
@@ -79,8 +89,8 @@ export const PalCard = styled.div`
 
 	@media ${device.xs} {
 		grid-template-rows: 5rem 4rem 1.5rem 2rem;
-		width: 24vw;
-		height: 22vh;
+		width: 6rem;
+		height: 13rem;
 	}
 
 	@media ${device.sm} {
@@ -119,7 +129,7 @@ export const PalCardTitle = styled.h2`
 	line-height: 1rem;
 	margin: 0;
 	@media ${device.xs} {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		font-weight: 500;
 	}
 	@media ${device.md} {

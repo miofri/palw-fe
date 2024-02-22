@@ -14,14 +14,12 @@ import { checkSpecialPalAndCombiRank } from '../../utils/checkSpecialPalAndCombi
 import { findByRounding_CombiRank } from '../../utils/findByRounding_CombiRank';
 import * as Style from '../../styles/generalStyle';
 import { checkParentsCombo } from '../../utils/checkParentsCombo';
+import { findByCodeName } from '../../utils/findByCodeName';
 export interface UpdateCombiRankModel {
 	smallerCombiRank: breedingPalModel | undefined;
 	biggerCombiRank: breedingPalModel | undefined;
 }
-export interface SelectedPalImages {
-	pal1image: string;
-	pal2image: string;
-}
+
 export const SelectPals = () => {
 	const { data } = useGetBreedingPalsQuery();
 	const activeSlot = useSelector(
@@ -30,22 +28,18 @@ export const SelectPals = () => {
 	const selectedPals = useSelector(
 		(state: RootState) => state.selectPal.selectPals
 	);
-	//const mappedPalByImageName = useSelector(
-	//	(state: RootState) => state.mapPalByImageName
-	//);
+	const mapPalByImageName = useSelector(
+		(state: RootState) => state.mapPalByImageName
+	);
 	const [breedingPalResult, setBreedingPalResult] = useState<
 		breedingPalModel | undefined
 	>(undefined);
-	//const [selectedPalImages, setSelectedPalImagse] = useState<SelectedPalImages>(
-	//	{
-	//		pal1image: '',
-	//		pal2image: '',
-	//	}
-	//);
+	const imgURLBase = process.env.REACT_APP_PAL_IMAGES_URL;
 
 	const handleClick = (slot: activeSlotType) => {
 		store.dispatch(selectPalActiveSlotSlice.actions.changeActiveSlot(slot));
 	};
+
 	useEffect(() => {
 		if (selectedPals.pal1 && selectedPals.pal2) {
 			const combiRank = Math.floor(
@@ -86,6 +80,16 @@ export const SelectPals = () => {
 				$isActive={activeSlot === 'slot1' ? 'active' : ''}
 				data-testid="palselect-1"
 			>
+				{selectedPals.pal1 ? (
+					<img
+						src={`${imgURLBase}${findByCodeName(
+							mapPalByImageName,
+							selectedPals.pal1?.CodeName
+						)}`}
+					/>
+				) : (
+					<></>
+				)}
 				{selectedPals.pal1?.Name}
 			</Style.PalSelectionCard>
 			<div className="sign">+</div>
@@ -94,10 +98,30 @@ export const SelectPals = () => {
 				$isActive={activeSlot === 'slot2' ? 'active' : ''}
 				data-testid="palselect-2"
 			>
+				{selectedPals.pal2 ? (
+					<img
+						src={`${imgURLBase}${findByCodeName(
+							mapPalByImageName,
+							selectedPals.pal2?.CodeName
+						)}`}
+					/>
+				) : (
+					<></>
+				)}
 				{selectedPals.pal2?.Name}
 			</Style.PalSelectionCard>
 			<div className="sign">=</div>
 			<Style.PalSelectionCard data-testid="palselect-result">
+				{breedingPalResult ? (
+					<img
+						src={`${imgURLBase}${findByCodeName(
+							mapPalByImageName,
+							breedingPalResult.CodeName
+						)}`}
+					/>
+				) : (
+					<></>
+				)}
 				{breedingPalResult?.Name}
 			</Style.PalSelectionCard>
 		</Style.PalSelectionContainer>
