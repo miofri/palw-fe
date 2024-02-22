@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
 import * as Styles from '../../styles/generalStyle';
 import { transformAndMapByImageName } from '../../utils/mappedByImageName';
@@ -10,7 +10,7 @@ import { breedingPalModel } from '../../interfaces/breedingPalModel';
 import { useSelector } from 'react-redux';
 import { useSetActiveSlot } from '../customhooks/useSetPal';
 
-export const BreedingPalsList = () => {
+export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
 	const { data, error, isLoading } = useGetBreedingPalsQuery();
 	const mapPalByImageName = useSelector(
@@ -20,23 +20,35 @@ export const BreedingPalsList = () => {
 		(state: RootState) => state.selectPalActiveSlot.activeSlot
 	);
 	const setActiveSlot = useSetActiveSlot();
-
+	const [filteredData, setFilteredData] = useState<
+		breedingPalModel[] | undefined
+	>(undefined);
 	useEffect(() => {
 		if (data) {
 			transformAndMapByImageName(data);
+			if (filter) {
+				setFilteredData(
+					data.filter((pal) =>
+						pal.Name.toLowerCase().includes(filter.toLowerCase())
+					)
+				);
+			} else {
+				setFilteredData(data);
+			}
 		}
-	}, [data]);
+	}, [data, filter]);
 
 	const handlePalCardClick = (breedingPal: breedingPalModel) => {
 		setActiveSlot(breedingPal, activeSlot);
 	};
 	return (
-		<Styles.PalCardsContainer>
-			{data ? (
-				data.map((breedingPal) => (
+		<Styles.PalCardsContainer data-testid="breeding-pal-list">
+			{filteredData ? (
+				filteredData.map((breedingPal) => (
 					<Styles.PalCard
 						key={breedingPal.CodeName}
 						onClick={() => handlePalCardClick(breedingPal)}
+						data-testid={breedingPal.ZukanIndex}
 					>
 						<Styles.PalCardFigure>
 							<img

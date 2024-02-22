@@ -49,10 +49,11 @@ export const PalSelectionCard = styled.div<{ $isActive?: string }>`
 
 export const PalCardsContainer = styled.div`
 	${FlexRow}
+	align-items: center;
 	justify-content: center;
 	gap: 3vw;
 	width: 90vw;
-	height: 60vh;
+	max-height: 60vh;
 	overflow-y: scroll;
 	@media ${device.sm} {
 		gap: 1vw;
@@ -60,31 +61,37 @@ export const PalCardsContainer = styled.div`
 	}
 	@media ${device.md} {
 		gap: 1vw;
-		width: 50vw;
+		width: 70vw;
 	}
 `;
 
 export const PalCard = styled.div`
+	display: grid;
+	grid-template-rows: 3.5rem 4.2rem 1rem 2.4rem;
+	align-items: center;
 	width: 20vw;
-	min-height: 21.5vh;
-	padding: 0.2rem;
+	height: 11.2rem;
+	padding-top: 0.2rem;
+
 	background-color: #1f2937;
 	border: 0.1rem solid ${colors.borderColor};
 	border-radius: 1vh;
 
 	@media ${device.xs} {
+		grid-template-rows: 5rem 4rem 1.5rem 2rem;
 		width: 24vw;
-		min-height: 19vh;
+		height: 22vh;
 	}
 
 	@media ${device.sm} {
-		width: 10vw;
-		min-height: 18.5vh;
+		grid-template-rows: 5rem 4.5rem 1.5rem 2rem;
+		width: 6.5rem;
+		height: 14rem;
 		border-radius: 1.5vh;
 	}
 	@media ${device.md} {
-		width: 8vw;
-		min-height: 16vh;
+		grid-template-rows: 5rem 4.5rem 1.5rem 2rem;
+		height: 14rem;
 	}
 	@media ${device.lg} {
 		width: 6vw;
@@ -108,13 +115,17 @@ export const PalCardFigure = styled.figure`
 export const PalCardTitle = styled.h2`
 	text-align: center;
 	font-size: 0.7rem;
+	font-weight: 600;
 	line-height: 1rem;
-	margin: 0.4rem 0;
+	margin: 0;
 	@media ${device.xs} {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
+		font-weight: 500;
 	}
 	@media ${device.md} {
-		font-size: 0.8rem;
+		font-size: 1rem;
+		font-weight: 400;
+		line-height: 1.2rem;
 	}
 `;
 
@@ -131,7 +142,6 @@ export const PalCardElementLabel = styled.figure`
 	margin: 0.5rem auto 0.2rem auto;
 	display: grid;
 	grid-template-columns: 1.5rem 1.5rem;
-	grid-template-areas: 'icon icon';
 	align-items: center;
 `;
 export const PalCardElementImage = styled.img`

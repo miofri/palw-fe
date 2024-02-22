@@ -5,7 +5,6 @@ import { selectPalSlice } from '../../store/slices/selectPalSlice';
 
 export const useSetActiveSlot = () => {
 	const dispatch = useDispatch();
-
 	const setActiveSlot = useCallback(
 		(breedingPal: breedingPalModel, activeSlot: string) => {
 			const action =

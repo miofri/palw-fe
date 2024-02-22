@@ -13,20 +13,26 @@ export const findByRounding_CombiRank = (
 		smallerCombiRank: undefined,
 		biggerCombiRank: undefined,
 	};
-	const roundedCombiRank = (Math.floor(combiRank) / 10) * 10;
+	const roundedCombiRank = Math.floor(Math.floor(combiRank) / 10) * 10;
+	console.log('roudnedcombirank', roundedCombiRank);
+
 	const findPalByCombiRank = data?.find(
 		(obj) => obj.CombiRank === roundedCombiRank
 	);
-	console.log(combiRank, roundedCombiRank, findPalByCombiRank);
 
 	if (findPalByCombiRank && specialPals.has(findPalByCombiRank?.Name)) {
 		findSmallerAndBigger_CombiRank(updateCombiRank, data, roundedCombiRank);
-		console.log(updateCombiRank);
-
 		if (updateCombiRank.smallerCombiRank && updateCombiRank.biggerCombiRank) {
+			console.log(
+				'smallerCombiRank: ',
+				updateCombiRank.smallerCombiRank,
+				'biggerCombiRank: ',
+				updateCombiRank.biggerCombiRank
+			);
+
 			const finalResult =
-				updateCombiRank.smallerCombiRank?.ZukanIndex <
-				updateCombiRank.biggerCombiRank?.ZukanIndex
+				updateCombiRank.smallerCombiRank?.CombiRank <
+				updateCombiRank.biggerCombiRank?.CombiRank
 					? updateCombiRank.smallerCombiRank
 					: updateCombiRank.biggerCombiRank;
 			return finalResult;
