@@ -9,12 +9,13 @@ import {
 import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';
 import { findSmallerAndBigger_CombiRank } from '../../utils/findSmallerAndBigger_CombiRank';
-import { findSmallerOrBigger_ZukanIndex } from '../../utils/findSmallerOrBigger_ZukanIndex';
+import { findSmallerOrBigger_IndexOrder } from '../../utils/findSmallerOrBigger_IndexOrder';
 import { checkSpecialPalAndCombiRank } from '../../utils/checkSpecialPalAndCombiRank';
 import { findByRounding_CombiRank } from '../../utils/findByRounding_CombiRank';
-import * as Style from '../../styles/generalStyle';
+import * as Style from '../../styles/GlobalStyles';
 import { checkParentsCombo } from '../../utils/checkParentsCombo';
 import { findByCodeName } from '../../utils/findByCodeName';
+
 export interface UpdateCombiRankModel {
 	smallerCombiRank: breedingPalModel | undefined;
 	biggerCombiRank: breedingPalModel | undefined;
@@ -53,6 +54,13 @@ export const SelectPals = () => {
 				console.log('in equal combirank');
 				setBreedingPalResult(selectedPals.pal1);
 			} else if (combiRank.toString().endsWith('5')) {
+				const findPal =
+					data?.find((pal) => pal.CombiRank === combiRank) || undefined;
+				if (data && findPal) {
+					setBreedingPalResult(findPal);
+					return;
+				}
+
 				const updateCombiRank: UpdateCombiRankModel = {
 					smallerCombiRank: undefined,
 					biggerCombiRank: undefined,
@@ -61,7 +69,7 @@ export const SelectPals = () => {
 				const result =
 					updateCombiRank.biggerCombiRank!.CombiRank - combiRank ===
 					combiRank - updateCombiRank.smallerCombiRank!.CombiRank
-						? findSmallerOrBigger_ZukanIndex(updateCombiRank)
+						? findSmallerOrBigger_IndexOrder(updateCombiRank)
 						: checkSpecialPalAndCombiRank(updateCombiRank, combiRank);
 				setBreedingPalResult(result);
 			} else {
@@ -74,8 +82,8 @@ export const SelectPals = () => {
 	useEffect(() => {}, [selectedPals]);
 
 	return (
-		<Style.PalSelectionContainer>
-			<Style.PalSelectionCard
+		<Style.SelectPal.SelectionContainer>
+			<Style.SelectPal.SelectionCard
 				onClick={() => handleClick('slot1')}
 				$isActive={activeSlot === 'slot1' ? 'active' : ''}
 				data-testid="palselect-1"
@@ -91,9 +99,9 @@ export const SelectPals = () => {
 					<></>
 				)}
 				<h2>{selectedPals.pal1?.Name}</h2>
-			</Style.PalSelectionCard>
+			</Style.SelectPal.SelectionCard>
 			<div className="sign">+</div>
-			<Style.PalSelectionCard
+			<Style.SelectPal.SelectionCard
 				onClick={() => handleClick('slot2')}
 				$isActive={activeSlot === 'slot2' ? 'active' : ''}
 				data-testid="palselect-2"
@@ -109,9 +117,9 @@ export const SelectPals = () => {
 					<></>
 				)}
 				<h2>{selectedPals.pal2?.Name}</h2>
-			</Style.PalSelectionCard>
+			</Style.SelectPal.SelectionCard>
 			<div className="sign">=</div>
-			<Style.PalSelectionCard data-testid="palselect-result">
+			<Style.SelectPal.SelectionCard data-testid="palselect-result">
 				{breedingPalResult ? (
 					<img
 						src={`${imgURLBase}${findByCodeName(
@@ -123,7 +131,7 @@ export const SelectPals = () => {
 					<></>
 				)}
 				<h2>{breedingPalResult?.Name}</h2>
-			</Style.PalSelectionCard>
-		</Style.PalSelectionContainer>
+			</Style.SelectPal.SelectionCard>
+		</Style.SelectPal.SelectionContainer>
 	);
 };

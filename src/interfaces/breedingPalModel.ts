@@ -6,4 +6,5 @@ export interface breedingPalModel {
 	ElementType1: string;
 	ElementType2: string;
 	CombiRank: number;
+	IndexOrder: number;
 }

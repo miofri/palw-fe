@@ -3,16 +3,16 @@ import { breedingTable } from './data/specialPalBreedingTable';
 const specialPals = new Set(breedingTable.map((entry) => entry.result));
 
 /**
- * For combiRank ending in 5. select child based on zukanindex if
+ * For combiRank ending in 5. select child based on IndexOrder if
  * there's equal distance between smaller & bigger combirank (e.g. 620 & 630, CR is 625)
  */
-export const findSmallerOrBigger_ZukanIndex = (
+export const findSmallerOrBigger_IndexOrder = (
 	updateCombiRank: UpdateCombiRankModel
 ) => {
 	console.log('in findSmallerAndBigger_CombiRank', updateCombiRank);
 
-	return updateCombiRank.smallerCombiRank!.ZukanIndex <
-		updateCombiRank.biggerCombiRank!.ZukanIndex
+	return updateCombiRank.smallerCombiRank!.IndexOrder <
+		updateCombiRank.biggerCombiRank!.IndexOrder
 		? specialPals.has(updateCombiRank.smallerCombiRank!.Name)
 			? updateCombiRank.biggerCombiRank
 			: updateCombiRank.smallerCombiRank

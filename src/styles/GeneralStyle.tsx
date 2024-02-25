@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { lightThemeColors } from './theme';
 import { device } from './breakpoints';
 import { getRarityLabelColor } from '../utils/getRarityLabelColor';
 
@@ -9,13 +8,13 @@ export const Background = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 3rem;
-	background-color: ${lightThemeColors.backgroundColor};
+	background-color: ${(props) => props.theme.backgroundColor};
 	transition: all 0.5s ease; // transition for the theme toggler
 	width: 100%;
 	height: 100%;
 	min-height: 100vh;
 	min-width: 100vw;
-	color-scheme: light;
+	color-scheme: ${(props) => props.theme.colorScheme};
 	color: #fff;
 `;
 
@@ -25,54 +24,7 @@ export const FlexRow = css`
 	flex-wrap: wrap;
 `;
 
-export const PalSelectionContainer = styled.div`
-	${FlexRow}
-	justify-content: center;
-	align-items: center;
-	width: fit-content;
-	height: fit-content;
-	@media ${device.md} {
-		gap: 0.4rem;
-	}
-	.sign {
-		font-size: 2rem;
-		font-weight: 900;
-		margin: 0;
-	}
-`;
-
-export const PalSelectionCard = styled.div<{ $isActive?: string }>`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
-	width: 10rem;
-	height: 10rem;
-	border: ${(props) =>
-			props.$isActive
-				? `${lightThemeColors.activeBorderColor}`
-				: `${lightThemeColors.borderColor}`}
-		3px solid;
-	border-radius: 2rem;
-	background-color: ${lightThemeColors.cardBgColor};
-	> img {
-		width: 6rem;
-		border: ${(props) =>
-				props.$isActive
-					? `${lightThemeColors.activeBorderColor}`
-					: `${lightThemeColors.borderColor}`}
-			1px solid;
-		border-radius: 3rem;
-	}
-	> h2 {
-		margin: 0;
-		font-size: 1rem;
-		color: ${lightThemeColors.fontColor};
-	}
-`;
-
-export const PalCardsContainer = styled.div`
+export const CardsContainer = styled.div`
 	${FlexRow}
 	align-items: center;
 	justify-content: center;
@@ -80,17 +32,22 @@ export const PalCardsContainer = styled.div`
 	width: 80vw;
 	height: 30rem;
 	overflow-y: scroll;
+	@media ${device.xs} {
+		height: 26rem;
+	}
 	@media ${device.sm} {
 		gap: 1vw;
 		width: 70vw;
+		height: 35rem;
 	}
 	@media ${device.md} {
 		gap: 1vw;
-		width: 70vw;
+		width: 45rem;
+		height: 50rem;
 	}
 `;
 
-export const PalCard = styled.div`
+export const Card = styled.div`
 	display: grid;
 	grid-template-rows: 3.5rem 4.2rem 1rem 2.4rem;
 	align-items: center;
@@ -98,9 +55,15 @@ export const PalCard = styled.div`
 	height: 11.2rem;
 	padding-top: 0.2rem;
 
-	background-color: ${lightThemeColors.cardBgColor};
-	border: 2px solid ${lightThemeColors.borderColor};
+	background-color: ${(props) => props.theme.cardBgColor};
+	border: 1px solid ${(props) => props.theme.borderColor};
 	border-radius: 1vh;
+	&:hover {
+		border: 0.1rem solid ${(props) => props.theme.activeBorderColor};
+		> figure > img {
+			border: 0.1rem solid ${(props) => props.theme.activeBorderColor};
+		}
+	}
 
 	@media ${device.xs} {
 		grid-template-rows: 5rem 4rem 1.5rem 2rem;
@@ -127,23 +90,24 @@ export const PalCard = styled.div`
 	}
 `;
 
-export const PalCardFigure = styled.figure`
+export const CardFigure = styled.figure`
 	margin: 0.4rem auto auto auto;
 	width: 70%;
+
 	> img {
-		border: 0.1rem solid ${lightThemeColors.borderColor};
+		border: 0.1rem solid ${(props) => props.theme.borderColor};
 		border-radius: 3rem;
 		width: 100%;
 	}
 `;
 
-export const PalCardTitle = styled.h2`
+export const CardTitle = styled.h2`
 	text-align: center;
 	font-size: 0.7rem;
 	font-weight: 600;
 	line-height: 1rem;
 	margin: 0;
-	color: ${lightThemeColors.fontColor};
+	color: ${(props) => props.theme.fontColor};
 	@media ${device.xs} {
 		font-size: 0.8rem;
 		font-weight: 500;
@@ -155,7 +119,7 @@ export const PalCardTitle = styled.h2`
 	}
 `;
 
-export const PalCardRarityLabel = styled.p<{ $rarity: string }>`
+export const CardRarityLabel = styled.p<{ $rarity: string }>`
 	margin: auto;
 	width: 80%;
 	padding: 0.1rem;
@@ -165,7 +129,7 @@ export const PalCardRarityLabel = styled.p<{ $rarity: string }>`
 	background-color: ${(props) => getRarityLabelColor(props.$rarity)};
 `;
 
-export const PalCardElementLabel = styled.figure`
+export const CardElementLabel = styled.figure`
 	width: 3rem;
 	height: 1.5rem;
 	margin: 0.5rem auto 0.2rem auto;
@@ -173,7 +137,7 @@ export const PalCardElementLabel = styled.figure`
 	grid-template-columns: 1.5rem 1.5rem;
 	align-items: center;
 `;
-export const PalCardElementImage = styled.img`
+export const CardElementImage = styled.img`
 	grid-area: 'icon';
 	min-width: 1rem;
 	width: 100%;
