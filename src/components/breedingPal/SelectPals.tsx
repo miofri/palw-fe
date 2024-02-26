@@ -8,13 +8,11 @@ import {
 } from '../../store/slices/selectPalActiveSlotSlice';
 import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';
-import { findSmallerAndBigger_CombiRank } from '../../utils/findSmallerAndBigger_CombiRank';
-import { findSmallerOrBigger_IndexOrder } from '../../utils/findSmallerOrBigger_IndexOrder';
-import { checkSpecialPalAndCombiRank } from '../../utils/checkSpecialPalAndCombiRank';
 import { findByRounding_CombiRank } from '../../utils/findByRounding_CombiRank';
 import * as Style from '../../styles/GlobalStyles';
 import { checkParentsCombo } from '../../utils/checkParentsCombo';
 import { findByCodeName } from '../../utils/findByCodeName';
+import { endWithFiveChecker } from '../../utils/endWithFiveChecker';
 
 export interface UpdateCombiRankModel {
 	smallerCombiRank: breedingPalModel | undefined;
@@ -46,7 +44,6 @@ export const SelectPals = () => {
 			const combiRank = Math.floor(
 				(selectedPals.pal1.CombiRank + selectedPals.pal2.CombiRank + 1) / 2
 			);
-			console.log(combiRank);
 			if (checkParentsCombo(selectedPals, data) !== undefined) {
 				console.log('in checkParentsCombo');
 				setBreedingPalResult(checkParentsCombo(selectedPals, data));
@@ -54,27 +51,14 @@ export const SelectPals = () => {
 				console.log('in equal combirank');
 				setBreedingPalResult(selectedPals.pal1);
 			} else if (combiRank.toString().endsWith('5')) {
-				const findPal =
-					data?.find((pal) => pal.CombiRank === combiRank) || undefined;
-				if (data && findPal) {
-					setBreedingPalResult(findPal);
-					return;
-				}
-
-				const updateCombiRank: UpdateCombiRankModel = {
-					smallerCombiRank: undefined,
-					biggerCombiRank: undefined,
-				};
-				findSmallerAndBigger_CombiRank(updateCombiRank, data, combiRank);
-				const result =
-					updateCombiRank.biggerCombiRank!.CombiRank - combiRank ===
-					combiRank - updateCombiRank.smallerCombiRank!.CombiRank
-						? findSmallerOrBigger_IndexOrder(updateCombiRank)
-						: checkSpecialPalAndCombiRank(updateCombiRank, combiRank);
-				setBreedingPalResult(result);
+				endWithFiveChecker(setBreedingPalResult, data, combiRank);
 			} else {
 				console.log('in findbyrounding');
-				setBreedingPalResult(findByRounding_CombiRank(data, combiRank));
+				const findByRoundingCombiRank = findByRounding_CombiRank(
+					data,
+					combiRank
+				);
+				setBreedingPalResult(findByRoundingCombiRank);
 			}
 		}
 	}, [selectedPals]);
@@ -96,7 +80,7 @@ export const SelectPals = () => {
 						)}`}
 					/>
 				) : (
-					<></>
+					<p>Select parent</p>
 				)}
 				<h2>{selectedPals.pal1?.Name}</h2>
 			</Style.SelectPal.SelectionCard>
@@ -114,7 +98,7 @@ export const SelectPals = () => {
 						)}`}
 					/>
 				) : (
-					<></>
+					<p>Select parent</p>
 				)}
 				<h2>{selectedPals.pal2?.Name}</h2>
 			</Style.SelectPal.SelectionCard>
@@ -128,7 +112,7 @@ export const SelectPals = () => {
 						)}`}
 					/>
 				) : (
-					<></>
+					<p>Result</p>
 				)}
 				<h2>{breedingPalResult?.Name}</h2>
 			</Style.SelectPal.SelectionCard>

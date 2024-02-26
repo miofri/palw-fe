@@ -30,10 +30,10 @@ export const CardsContainer = styled.div`
 	justify-content: center;
 	gap: 3vw;
 	width: 80vw;
-	height: 30rem;
+	height: 22rem;
 	overflow-y: scroll;
 	@media ${device.xs} {
-		height: 26rem;
+		height: 32rem;
 	}
 	@media ${device.sm} {
 		gap: 1vw;
@@ -42,8 +42,16 @@ export const CardsContainer = styled.div`
 	}
 	@media ${device.md} {
 		gap: 1vw;
-		width: 45rem;
-		height: 50rem;
+		width: 50rem;
+		height: 18rem;
+	}
+	@media ${device.lg} {
+		height: 26rem;
+	}
+	@media ${device.xl} {
+		gap: 1vw;
+		width: 70rem;
+		height: 40rem;
 	}
 `;
 
@@ -54,7 +62,6 @@ export const Card = styled.div`
 	width: 4rem;
 	height: 11.2rem;
 	padding-top: 0.2rem;
-
 	background-color: ${(props) => props.theme.cardBgColor};
 	border: 1px solid ${(props) => props.theme.borderColor};
 	border-radius: 1vh;
@@ -66,9 +73,9 @@ export const Card = styled.div`
 	}
 
 	@media ${device.xs} {
-		grid-template-rows: 5rem 4rem 1.5rem 2rem;
-		width: 6rem;
-		height: 13rem;
+		grid-template-rows: 3rem 4rem 1.5rem 2rem;
+		width: 4rem;
+		height: 11rem;
 	}
 
 	@media ${device.sm} {
@@ -78,8 +85,9 @@ export const Card = styled.div`
 		border-radius: 1.5vh;
 	}
 	@media ${device.md} {
-		grid-template-rows: 5rem 4.5rem 1.5rem 2rem;
-		height: 14rem;
+		grid-template-rows: 4rem 4.5rem 1.5rem 2rem;
+		width: 5rem;
+		height: 12.5rem;
 	}
 	@media ${device.lg} {
 		width: 6vw;
@@ -109,11 +117,11 @@ export const CardTitle = styled.h2`
 	margin: 0;
 	color: ${(props) => props.theme.fontColor};
 	@media ${device.xs} {
-		font-size: 0.8rem;
+		font-size: 0.7rem;
 		font-weight: 500;
 	}
 	@media ${device.md} {
-		font-size: 1rem;
+		font-size: 0.8rem;
 		font-weight: 400;
 		line-height: 1.2rem;
 	}

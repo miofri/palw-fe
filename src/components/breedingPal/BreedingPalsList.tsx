@@ -9,11 +9,10 @@ import { RootState } from '../../store/store';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';
 import { useSelector } from 'react-redux';
 import { useSetActiveSlot } from '../customhooks/useSetPal';
-import { SerializedError } from '@reduxjs/toolkit';
 
 export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
-	const { data, error, isLoading } = useGetBreedingPalsQuery();
+	const { data, isLoading } = useGetBreedingPalsQuery();
 
 	const mapPalByImageName = useSelector(
 		(state: RootState) => state.mapPalByImageName
@@ -27,8 +26,6 @@ export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 	>(undefined);
 	useEffect(() => {
 		if (data) {
-			console.log(data);
-
 			transformAndMapByImageName(data);
 			if (filter) {
 				setFilteredData(
@@ -77,13 +74,8 @@ export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 				))
 			) : isLoading ? (
 				<div>Loading...</div>
-			) : error ? (
-				<div>
-					{(error as SerializedError).code}
-					{(error as SerializedError).message}
-				</div>
 			) : (
-				<div>Something went wrong!</div>
+				<div>Something went wrong...</div>
 			)}
 		</Styles.BreedingPal.CardsContainer>
 	);

@@ -15,6 +15,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
+    "react-router-dom": "^6.22.1",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.8",
     "ts-node": "^10.9.2",
@@ -26,7 +27,7 @@
     "build": "react-scripts build",
     "test": "jest --config ./jest.config.ts",
     "eject": "react-scripts eject",
-    "fly-up": "npm run build && cp -r build ../palw && cd ../palw && fly deploy && cd ../palw-fe"
+    "fly-up": "mv .env .env_2 && mv .env_1 .env && npm run build && cp -r build ../palw && cd ../palw && fly deploy && cd ../palw-fe && mv .env .env_1 && mv .env_2 .env"
   },
   "eslintConfig": {
     "extends": [

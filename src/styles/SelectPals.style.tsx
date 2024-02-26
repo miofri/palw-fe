@@ -8,8 +8,11 @@ export const SelectionBodyContainer = styled.div`
 	align-items: center;
 	gap: 1rem;
 	margin-top: 4.5rem;
-	@media ${device.sm} {
+	@media ${device.xs} {
 		margin-top: 0;
+	}
+	@media ${device.md} {
+		margin-top: 5rem;
 	}
 `;
 
@@ -42,7 +45,7 @@ export const SelectionCard = styled.div<{ $isActive?: string }>`
 				? `${props.theme.activeBorderColor}`
 				: `${props.theme.borderColor}`}
 		3px solid;
-	border-radius: 2rem;
+	border-radius: 1rem;
 	background-color: ${(props) => props.theme.cardBgColor};
 	> img {
 		width: 60%;
@@ -55,12 +58,23 @@ export const SelectionCard = styled.div<{ $isActive?: string }>`
 	}
 	> h2 {
 		margin: 0;
-		font-size: 1rem;
+		font-size: 0.6rem;
 		color: ${(props) => props.theme.fontColor};
+	}
+	> p {
+		color: #c2c2c2;
+		text-align: center;
 	}
 
 	@media ${device.sm} {
+		font-size: 1rem;
 		width: 8rem;
 		height: 8rem;
+	}
+	@media ${device.lg} {
+		> h2 {
+			font-size: 0.8rem;
+			font-weight: 500;
+		}
 	}
 `;

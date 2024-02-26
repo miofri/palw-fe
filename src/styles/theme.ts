@@ -1,7 +1,7 @@
 export const lightThemeColors = {
 	borderColor: '#FFB2B2',
 	activeBorderColor: '#FF99A5',
-	backgroundColor: '#FBE7FF',
+	backgroundColor: '#F7D0FF',
 	cardBgColor: '#FFF1F8',
 	fontColor: '#BB62B8',
 	colorScheme: 'light',
