@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from './breakpoints';
-import { FlexRow } from './GeneralStyle';
+import { FlexRow } from './PalListStyle';
 
 export const SelectionBodyContainer = styled.div`
 	display: flex;

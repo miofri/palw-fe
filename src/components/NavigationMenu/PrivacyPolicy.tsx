@@ -2,9 +2,15 @@ import React from 'react';
 import { Layout } from '../Layout';
 import * as Styles from '../../styles/GlobalStyles';
 
-export const PrivacyPolicy = () => {
+export const PrivacyPolicy: React.FC<{
+	pageColorTheme: 'dark' | 'light';
+	setPageColorTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
+}> = ({ pageColorTheme, setPageColorTheme }) => {
 	return (
-		<Layout>
+		<Layout
+			pageColorTheme={pageColorTheme}
+			setPageColorTheme={setPageColorTheme}
+		>
 			<Styles.About.Container>
 				<h1>Privacy Policy</h1>
 				<hr />
@@ -13,9 +19,9 @@ export const PrivacyPolicy = () => {
 				<br />
 				<h2>Data Collection</h2>
 				<hr />
-				This website/app does not collect any personal data or any other data
-				from users. Your browsing behavior, preferences, or usage patterns are
-				not tracked. The only data that may be processed during your visit is
+				This website does not collect any personal data or any other data from
+				users. Your browsing behavior, preferences, or usage patterns are not
+				tracked. The only data that may be processed during your visit is
 				related to the calculations performed by our calculator based on the
 				user's interactions with the interface. <br />
 				<h2>Data Storage</h2> <hr />
@@ -24,19 +30,19 @@ export const PrivacyPolicy = () => {
 				are not transmitted to or stored on our servers. <br />
 				<h2>Third-Party Services</h2> <hr />
 				No third-party services or plugins that may collect data from users are
-				used. This website/app is self-contained and does not rely on external
+				used. This website is self-contained and does not rely on external
 				services for functionality. <br />
 				<h2>Cookies</h2> <hr />
-				This website/app does not use cookies for tracking purposes. However,
-				please note that certain technologies such as RTK Query may cache
-				fetched data to improve performance. This cached data is stored locally
-				within your browser and does not contain any personally identifiable
-				information. <br />
+				This website does not use cookies for tracking purposes. However, please
+				note that certain technologies such as RTK Query may cache fetched data
+				to improve performance. This cached data is stored locally within your
+				browser and does not contain any personally identifiable information.{' '}
+				<br />
 				<h2>Hosting Provider</h2> <hr />
-				This website/app is hosted on Fly.io, a third-party hosting provider.
-				While this website/app do not directly control the data handling
-				practices of Fly.io, This provider was chosen based on its commitment to
-				privacy and security.
+				This website is hosted on Fly.io, a third-party hosting provider. While
+				this website do not directly control the data handling practices of
+				Fly.io, This provider was chosen based on its commitment to privacy and
+				security.
 				<br />
 				<h2>Updates to this Privacy Policy</h2> <hr />
 				This privacy policy may be updated from time to time to reflect changes

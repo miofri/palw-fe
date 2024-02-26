@@ -1,22 +1,47 @@
-import './App.css';
-import { BreedingPalsList } from './components/breedingPal/BreedingPalsList';
-import { SelectPals } from './components/breedingPal/SelectPals';
-import { FilterInputBox } from './components/breedingPal/FilterInputBox';
-import * as Styles from './styles/GlobalStyles';
-import { Layout } from './components/Layout';
-import { useState } from 'react';
-function App() {
-	const [filter, setFilter] = useState<string>('');
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { store } from './store/store';
+import { PrivacyPolicy } from './components/NavigationMenu/PrivacyPolicy';
+import { PalSelection } from './components/breedingPal/PalSelection';
+import { About } from './components/NavigationMenu/About';
 
-	return (
-		<Layout>
-			<Styles.SelectPal.SelectionBodyContainer>
-				<SelectPals />
-				<FilterInputBox setFilter={setFilter} />
-			</Styles.SelectPal.SelectionBodyContainer>
-			<BreedingPalsList filter={filter} />
-		</Layout>
+export const App = () => {
+	const [pageColorTheme, setPageColorTheme] = useState<'dark' | 'light'>(
+		'dark'
 	);
-}
-
-export default App;
+	const router = createBrowserRouter([
+		{
+			path: '/',
+			element: (
+				<PalSelection
+					pageColorTheme={pageColorTheme}
+					setPageColorTheme={setPageColorTheme}
+				/>
+			),
+		},
+		{
+			path: '/about',
+			element: (
+				<About
+					pageColorTheme={pageColorTheme}
+					setPageColorTheme={setPageColorTheme}
+				/>
+			),
+		},
+		{
+			path: '/privacypolicy',
+			element: (
+				<PrivacyPolicy
+					pageColorTheme={pageColorTheme}
+					setPageColorTheme={setPageColorTheme}
+				/>
+			),
+		},
+	]);
+	return (
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
+	);
+};

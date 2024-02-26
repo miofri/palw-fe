@@ -1,9 +1,15 @@
 import React from 'react';
 import { Layout } from '../Layout';
 import * as Styles from '../../styles/GlobalStyles';
-export const About = () => {
+export const About: React.FC<{
+	pageColorTheme: 'dark' | 'light';
+	setPageColorTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
+}> = ({ pageColorTheme, setPageColorTheme }) => {
 	return (
-		<Layout>
+		<Layout
+			pageColorTheme={pageColorTheme}
+			setPageColorTheme={setPageColorTheme}
+		>
 			<Styles.About.Container>
 				<h1>About this app</h1>
 				<p>

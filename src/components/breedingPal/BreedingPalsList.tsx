@@ -8,7 +8,7 @@ import { PalCardElements } from './PalCardElements';
 import { RootState } from '../../store/store';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';
 import { useSelector } from 'react-redux';
-import { useSetActiveSlot } from '../customhooks/useSetPal';
+import { useSetActiveSlot } from '../../customhooks/useSetPal';
 
 export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;

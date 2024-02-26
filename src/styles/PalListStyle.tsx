@@ -7,7 +7,7 @@ export const Background = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 3rem;
+	gap: 2rem;
 	background-color: ${(props) => props.theme.backgroundColor};
 	transition: all 0.5s ease; // transition for the theme toggler
 	width: 100%;
@@ -43,7 +43,7 @@ export const CardsContainer = styled.div`
 	@media ${device.md} {
 		gap: 1vw;
 		width: 50rem;
-		height: 18rem;
+		height: 16rem;
 	}
 	@media ${device.lg} {
 		height: 26rem;
@@ -54,7 +54,16 @@ export const CardsContainer = styled.div`
 		height: 40rem;
 	}
 `;
+export const CardFigure = styled.figure`
+	margin: 0.4rem auto auto auto;
+	width: 70%;
 
+	> img {
+		border: 0.1rem solid ${(props) => props.theme.borderColor};
+		border-radius: 3rem;
+		width: 100%;
+	}
+`;
 export const Card = styled.div`
 	display: grid;
 	grid-template-rows: 3.5rem 4.2rem 1rem 2.4rem;
@@ -67,7 +76,7 @@ export const Card = styled.div`
 	border-radius: 1vh;
 	&:hover {
 		border: 0.1rem solid ${(props) => props.theme.activeBorderColor};
-		> figure > img {
+		${CardFigure} > img {
 			border: 0.1rem solid ${(props) => props.theme.activeBorderColor};
 		}
 	}
@@ -95,17 +104,6 @@ export const Card = styled.div`
 	p {
 		font-size: 0.7rem;
 		text-align: center;
-	}
-`;
-
-export const CardFigure = styled.figure`
-	margin: 0.4rem auto auto auto;
-	width: 70%;
-
-	> img {
-		border: 0.1rem solid ${(props) => props.theme.borderColor};
-		border-radius: 3rem;
-		width: 100%;
 	}
 `;
 

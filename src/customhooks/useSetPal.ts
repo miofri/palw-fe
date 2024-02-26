@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
-import { selectPalSlice } from '../../store/slices/selectPalSlice';
+import { breedingPalModel } from '../interfaces/breedingPalModel';
+import { selectPalSlice } from '../store/slices/selectPalSlice';
 
 export const useSetActiveSlot = () => {
 	const dispatch = useDispatch();

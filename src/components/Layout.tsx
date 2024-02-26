@@ -1,16 +1,15 @@
 import { ReactNode } from 'react';
-import { Background } from '../styles/GeneralStyle';
+import { Background } from '../styles/PalListStyle';
 import { Navbar } from './NavigationMenu/Navbar';
-import React, { useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { lightThemeColors, darkThemeColors } from '../styles/theme';
 
 export const Layout: React.FC<{
 	children: ReactNode;
-}> = ({ children }) => {
-	const [pageColorTheme, setPageColorTheme] = useState<'dark' | 'light'>(
-		'dark'
-	);
+	pageColorTheme: 'dark' | 'light';
+	setPageColorTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
+}> = ({ children, pageColorTheme, setPageColorTheme }) => {
 	return (
 		<ThemeProvider
 			theme={pageColorTheme === 'dark' ? darkThemeColors : lightThemeColors}
