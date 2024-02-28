@@ -29,11 +29,10 @@ export const About: React.FC<{
 					. The pals used in this app are only the base pals and does not
 					include special pals like bosses.
 				</p>
-
-				<footer>
+				<Styles.About.Disclaimer>
 					palw.fly.dev is not affiliated with in any way, or endorsed by
 					Pocketpair.
-				</footer>
+				</Styles.About.Disclaimer>
 			</Styles.About.Container>
 		</Layout>
 	);
