@@ -9,8 +9,6 @@ const specialPals = new Set(breedingTable.map((entry) => entry.result));
 export const findSmallerOrBigger_IndexOrder = (
 	updateCombiRank: UpdateCombiRankModel
 ) => {
-	console.log('in findSmallerAndBigger_CombiRank', updateCombiRank);
-
 	return updateCombiRank.smallerCombiRank!.IndexOrder <
 		updateCombiRank.biggerCombiRank!.IndexOrder
 		? specialPals.has(updateCombiRank.smallerCombiRank!.Name)

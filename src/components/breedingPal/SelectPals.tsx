@@ -44,22 +44,22 @@ export const SelectPals = () => {
 			const combiRank = Math.floor(
 				(selectedPals.pal1.CombiRank + selectedPals.pal2.CombiRank + 1) / 2
 			);
-			if (checkParentsCombo(selectedPals, data) !== undefined) {
-				console.log('in checkParentsCombo');
-				setBreedingPalResult(checkParentsCombo(selectedPals, data));
+			let result;
+			const checkParentsComboResult = checkParentsCombo(selectedPals, data);
+			if (checkParentsComboResult !== undefined) {
+				result = checkParentsComboResult;
 			} else if (selectedPals.pal1.CombiRank === selectedPals.pal2.CombiRank) {
-				console.log('in equal combirank');
-				setBreedingPalResult(selectedPals.pal1);
+				result = selectedPals.pal1;
 			} else if (combiRank.toString().endsWith('5')) {
-				endWithFiveChecker(setBreedingPalResult, data, combiRank);
+				result = endWithFiveChecker(data, combiRank);
 			} else {
-				console.log('in findbyrounding');
 				const findByRoundingCombiRank = findByRounding_CombiRank(
 					data,
 					combiRank
 				);
-				setBreedingPalResult(findByRoundingCombiRank);
+				result = findByRoundingCombiRank;
 			}
+			if (result) setBreedingPalResult(result);
 		}
 	}, [selectedPals]);
 

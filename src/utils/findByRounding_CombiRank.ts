@@ -18,7 +18,6 @@ export const findByRounding_CombiRank = (
 	const findPalByCombiRank = data?.find(
 		(obj) => obj.CombiRank === roundedCombiRank
 	);
-	console.log('roudnedcombirank', roundedCombiRank, findPalByCombiRank);
 	findSmallerAndBigger_CombiRank(updateCombiRank, data, roundedCombiRank);
 	if (
 		findPalByCombiRank &&

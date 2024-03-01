@@ -4,9 +4,6 @@ import { checkEqualCombiRank } from './checkEqualCombiRank';
 import { findSmallerAndBigger_CombiRank } from './findSmallerAndBigger_CombiRank';
 
 export const endWithFiveChecker = (
-	setBreedingPalResult: React.Dispatch<
-		React.SetStateAction<breedingPalModel | undefined>
-	>,
 	data: breedingPalModel[] | undefined,
 	combiRank: number
 ) => {
@@ -14,7 +11,7 @@ export const endWithFiveChecker = (
 		data?.find((pal: breedingPalModel) => pal.CombiRank === combiRank) ||
 		undefined;
 	if (data && findPal) {
-		setBreedingPalResult(findPal);
+		return findPal;
 	} else {
 		const updateCombiRank: UpdateCombiRankModel = {
 			smallerCombiRank: undefined,
@@ -22,6 +19,6 @@ export const endWithFiveChecker = (
 		};
 		findSmallerAndBigger_CombiRank(updateCombiRank, data, combiRank);
 		const result = checkEqualCombiRank(updateCombiRank, combiRank);
-		setBreedingPalResult(result);
+		return result;
 	}
 };

@@ -1,28 +1,44 @@
 import { UpdateCombiRankModel } from '../components/breedingPal/SelectPals';
 import { breedingPalModel } from '../interfaces/breedingPalModel';
+import { breedingTable } from './data/specialPalBreedingTable';
+import { specialPalSameParents } from './data/specialPalSameParents';
 /**
- * For combiRank ending in 5.
- * iterate through data to find the next pal with smaller and bigger combirank (potential child)
+ * Iterate through data to find the next pal with smaller and bigger combirank (potential child)
  */
 export const findSmallerAndBigger_CombiRank = async (
 	updateCombiRank: UpdateCombiRankModel,
 	data: breedingPalModel[] | undefined,
 	combiRank: number
 ) => {
+	const specialPals = new Set(breedingTable.map((entry) => entry.result));
 	let iterator = 5;
 	while (
 		updateCombiRank.smallerCombiRank === undefined ||
 		updateCombiRank.biggerCombiRank === undefined
 	) {
 		if (updateCombiRank.smallerCombiRank === undefined) {
-			updateCombiRank.smallerCombiRank = data?.find(
+			const findSmallerCombiRankPal = data?.find(
 				(pal) => pal.CombiRank === combiRank - iterator
 			);
+			if (
+				findSmallerCombiRankPal &&
+				!specialPalSameParents.includes(findSmallerCombiRankPal?.Name) &&
+				!specialPals.has(findSmallerCombiRankPal.Name)
+			) {
+				updateCombiRank.smallerCombiRank = findSmallerCombiRankPal;
+			}
 		}
 		if (updateCombiRank.biggerCombiRank === undefined) {
-			updateCombiRank.biggerCombiRank = data?.find(
+			const findBiggerCombiRankPal = data?.find(
 				(pal) => pal.CombiRank === combiRank + iterator
 			);
+			if (
+				findBiggerCombiRankPal &&
+				!specialPalSameParents.includes(findBiggerCombiRankPal.Name) &&
+				!specialPals.has(findBiggerCombiRankPal.Name)
+			) {
+				updateCombiRank.biggerCombiRank = findBiggerCombiRankPal;
+			}
 		}
 		iterator = iterator + 5;
 		if (iterator > 100) {
