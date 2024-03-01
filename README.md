@@ -2,9 +2,9 @@
 
 Hei! This is a Palworld breeding calculator built with Typescript, styled-components, and React, with a simple MongoDB + Express.js backend.
 
-This project is still under development and a lot of refactoring needs to be done. Some special calculations for certain pals (e.g. Frostallion) is not done yet.
+This project is still under development and a lot of refactoring needs to be done.
 
-However, the project does have a live site (for fun) that gets updated periodically whenever there is an major update. [palw.fly.dev](https://palw.fly.dev)
+However, the project does have a live site (for fun) that gets updated periodically whenever there is a major update. [palw.fly.dev](https://palw.fly.dev)
 
 Breeding data is obtained from [this thread.](https://www.reddit.com/r/Palworld/comments/19d98ws/spreadsheet_all_breeding_combinations_datamined/)
 
