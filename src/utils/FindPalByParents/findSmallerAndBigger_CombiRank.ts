@@ -1,7 +1,7 @@
-import { UpdateCombiRankModel } from '../components/breedingPal/SelectPals';
-import { breedingPalModel } from '../interfaces/breedingPalModel';
-import { breedingTable } from './data/specialPalBreedingTable';
-import { specialPalSameParents } from './data/specialPalSameParents';
+import { UpdateCombiRankModel } from '../../components/FindPalByParents/SelectPals';
+import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { breedingTable } from '../data/specialPalBreedingTable';
+import { specialPalSameParents } from '../data/specialPalSameParents';
 /**
  * Iterate through data to find the next pal with smaller and bigger combirank (potential child)
  */

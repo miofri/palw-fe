@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { device } from './breakpoints';
-import { getRarityLabelColor } from '../utils/getRarityLabelColor';
+import { getRarityLabelColor } from '../utils/FindPalByParents/getRarityLabelColor';
 
 export const Background = styled.div`
 	display: flex;

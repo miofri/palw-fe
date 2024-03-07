@@ -1,4 +1,4 @@
-import { mappedByImageNameModel } from '../interfaces/mappedByImageNameModel';
+import { mappedByImageNameModel } from '../../interfaces/mappedByImageNameModel';
 
 export const findByCodeName = (
 	mapped: mappedByImageNameModel[],

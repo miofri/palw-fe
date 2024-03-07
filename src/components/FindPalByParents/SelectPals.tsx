@@ -8,11 +8,11 @@ import {
 } from '../../store/slices/selectPalActiveSlotSlice';
 import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';
-import { findByRounding_CombiRank } from '../../utils/findByRounding_CombiRank';
+import { findByRounding_CombiRank } from '../../utils/FindPalByParents/findByRounding_CombiRank';
 import * as Style from '../../styles/GlobalStyles';
-import { checkParentsCombo } from '../../utils/checkParentsCombo';
-import { findByCodeName } from '../../utils/findByCodeName';
-import { endWithFiveChecker } from '../../utils/endWithFiveChecker';
+import { checkParentsCombo } from '../../utils/FindPalByParents/checkParentsCombo';
+import { findByCodeName } from '../../utils/FindPalByParents/findByCodeName';
+import { endWithFiveChecker } from '../../utils/FindPalByParents/endWithFiveChecker';
 
 export interface UpdateCombiRankModel {
 	smallerCombiRank: breedingPalModel | undefined;
@@ -66,7 +66,7 @@ export const SelectPals = () => {
 	useEffect(() => {}, [selectedPals]);
 
 	return (
-		<Style.SelectPal.SelectionContainer>
+		<Style.SelectPal.SelectionContainer data-testid="select-pals">
 			<Style.SelectPal.SelectionCard
 				onClick={() => handleClick('slot1')}
 				$isActive={activeSlot === 'slot1' ? 'active' : ''}

@@ -2,15 +2,9 @@ import React from 'react';
 import { Layout } from '../Layout';
 import * as Styles from '../../styles/GlobalStyles';
 
-export const PrivacyPolicy: React.FC<{
-	pageColorTheme: 'dark' | 'light';
-	setPageColorTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
-}> = ({ pageColorTheme, setPageColorTheme }) => {
+export const PrivacyPolicy = () => {
 	return (
-		<Layout
-			pageColorTheme={pageColorTheme}
-			setPageColorTheme={setPageColorTheme}
-		>
+		<Layout>
 			<Styles.About.Container>
 				<h1>Privacy Policy</h1>
 				<hr />

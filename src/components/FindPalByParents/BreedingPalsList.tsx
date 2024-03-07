@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
 import * as Styles from '../../styles/GlobalStyles';
-import { transformAndMapByImageName } from '../../utils/mappedByImageName';
-import { findByCodeName } from '../../utils/findByCodeName';
-import { getPalRarityLabel } from '../../utils/getPalRarityLabel';
+import { transformAndMapByImageName } from '../../utils/FindPalByParents/mappedByImageName';
+import { findByCodeName } from '../../utils/FindPalByParents/findByCodeName';
+import { getPalRarityLabel } from '../../utils/FindPalByParents/getPalRarityLabel';
 import { PalCardElements } from './PalCardElements';
 import { RootState } from '../../store/store';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';

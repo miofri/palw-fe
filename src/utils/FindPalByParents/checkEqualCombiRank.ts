@@ -1,4 +1,4 @@
-import { UpdateCombiRankModel } from '../components/breedingPal/SelectPals';
+import { UpdateCombiRankModel } from '../../components/FindPalByParents/SelectPals';
 import { checkSpecialPalAndCombiRank } from './checkSpecialPalAndCombiRank';
 import { findSmallerOrBigger_IndexOrder } from './findSmallerOrBigger_IndexOrder';
 

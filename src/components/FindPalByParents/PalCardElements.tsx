@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPalElement } from '../../utils/getPalElement';
+import { getPalElement } from '../../utils/FindPalByParents/getPalElement';
 import { breedingPalModel } from '../../interfaces/breedingPalModel';
 import * as Styles from '../../styles/PalListStyle';
 const elementUrl = process.env.REACT_APP_PAL_ELEMENTS_URL;

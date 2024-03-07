@@ -1,7 +1,7 @@
-import { UpdateCombiRankModel } from '../components/breedingPal/SelectPals';
-import { breedingPalModel } from '../interfaces/breedingPalModel';
+import { UpdateCombiRankModel } from '../../components/FindPalByParents/SelectPals';
+import { breedingPalModel } from '../../interfaces/breedingPalModel';
 import { checkEqualCombiRank } from './checkEqualCombiRank';
-import { breedingTable } from './data/specialPalBreedingTable';
+import { breedingTable } from '../data/specialPalBreedingTable';
 import { findSmallerAndBigger_CombiRank } from './findSmallerAndBigger_CombiRank';
 
 const specialPals = new Set(breedingTable.map((entry) => entry.result));

@@ -1,7 +1,7 @@
-import { mappedByImageNameModel } from '../interfaces/mappedByImageNameModel';
-import { breedingPalModel } from '../interfaces/breedingPalModel';
-import { mapPalByImageNameSlice } from '../store/slices/mapPalByImageNameSlice';
-import { store } from '../store/store';
+import { mappedByImageNameModel } from '../../interfaces/mappedByImageNameModel';
+import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { mapPalByImageNameSlice } from '../../store/slices/mapPalByImageNameSlice';
+import { store } from '../../store/store';
 
 const mappedByImageName = (
 	data: breedingPalModel[] | undefined,

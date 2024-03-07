@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import * as Styles from '../../styles/GlobalStyles';
 import { Link } from 'react-router-dom';
+import { ThemeContext } from '../../contexts/Theme.Context';
 
-export const Navbar: React.FC<{
-	pageColorTheme: 'dark' | 'light';
-	setPageColorTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
-}> = ({ pageColorTheme, setPageColorTheme }) => {
+export const Navbar = () => {
+	const { pageColorTheme, setPageColorTheme } = useContext(ThemeContext);
+
 	const handleThemeToggle = () => {
 		setPageColorTheme(pageColorTheme === 'dark' ? 'light' : 'dark');
 	};
-
+	console.log('render');
 	return (
 		<Styles.NavBar.NavBarContainer>
 			<div className="dropdownContainer">
@@ -23,7 +23,10 @@ export const Navbar: React.FC<{
 			<Link to="/" className="title">
 				Palworld breeding combination calculator
 			</Link>
-			<button onClick={handleThemeToggle} className="material-symbols-outlined">
+			<button
+				onClick={() => handleThemeToggle()}
+				className="material-symbols-outlined"
+			>
 				dark_mode
 			</button>
 		</Styles.NavBar.NavBarContainer>

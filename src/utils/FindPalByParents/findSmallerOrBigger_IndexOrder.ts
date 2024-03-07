@@ -1,5 +1,5 @@
-import { UpdateCombiRankModel } from '../components/breedingPal/SelectPals';
-import { breedingTable } from './data/specialPalBreedingTable';
+import { UpdateCombiRankModel } from '../../components/FindPalByParents/SelectPals';
+import { breedingTable } from '../data/specialPalBreedingTable';
 const specialPals = new Set(breedingTable.map((entry) => entry.result));
 
 /**

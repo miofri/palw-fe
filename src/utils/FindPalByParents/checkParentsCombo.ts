@@ -1,5 +1,5 @@
-import { breedingPalModel } from '../interfaces/breedingPalModel';
-import { breedingTable } from './data/specialPalBreedingTable';
+import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { breedingTable } from '../data/specialPalBreedingTable';
 
 export const checkParentsCombo = (
 	selectedPals: {
