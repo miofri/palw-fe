@@ -12,14 +12,14 @@ export const Navbar = () => {
 	console.log('render');
 	return (
 		<Styles.NavBar.NavBarContainer>
-			<div className="dropdownContainer">
-				<button className="dropdownButton">Menu</button>
-				<div className="dropdownContent">
+			<Styles.NavBar.DropDownContainer>
+				<Styles.NavBar.DropDownButton>Menu</Styles.NavBar.DropDownButton>
+				<Styles.NavBar.DropDownContent>
 					<Link to="/">Home</Link>
 					<Link to="/about">About</Link>
 					<Link to="/privacypolicy">Privacy Policy</Link>
-				</div>
-			</div>
+				</Styles.NavBar.DropDownContent>
+			</Styles.NavBar.DropDownContainer>
 			<Link to="/" className="title">
 				Palworld breeding combination calculator
 			</Link>

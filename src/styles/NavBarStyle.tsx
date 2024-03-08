@@ -1,6 +1,7 @@
 import styled, { ExecutionContext, css } from 'styled-components';
 import { device } from './breakpoints';
 import { FastOmit } from 'styled-components/dist/types';
+import React from 'react';
 //import { device } from './breakpoints';
 
 export const sharedButtonProperties = css`
@@ -37,44 +38,6 @@ export const NavBarContainer = styled.nav`
 	/*border-bottom: 2px solid ${(props) => props.theme.borderColor};*/
 	background-color: ${(props) => props.theme.cardBgColor};
 
-	.dropdownContainer {
-		grid-column-start: 2;
-		&:hover {
-			.dropdownContent {
-				display: block;
-			}
-		}
-	}
-	.dropdownButton {
-		${sharedButtonProperties};
-		font-size: 0.8rem;
-		font-weight: 600;
-	}
-	.dropdownContent {
-		display: none;
-		position: absolute;
-		background-color: ${(props) => props.theme.cardBgColor};
-		min-height: fit-content;
-		min-width: 8rem;
-		border-radius: 1rem;
-		overflow: hidden;
-		font-size: 0.8rem;
-		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-		z-index: 1;
-		a {
-			display: block;
-			text-decoration: none;
-			color: ${(props) => props.theme.fontColor};
-			padding-top: 1rem;
-			padding-left: 1rem;
-			height: 2rem;
-			&:hover {
-				background-color: ${(props) => props.theme.borderColor};
-				color: #fff;
-			}
-		}
-	}
-
 	.material-symbols-outlined {
 		grid-column-start: 12;
 		${sharedButtonProperties}
@@ -92,10 +55,54 @@ export const NavBarContainer = styled.nav`
 	}
 
 	@media ${device.sm} {
-		.dropdownButton,
-		.dropdownContent,
 		.title {
 			font-size: 1rem;
 		}
+	}
+`;
+
+export const DropDownContainer = styled.div`
+	grid-column-start: 2;
+	&:hover {
+		.dropdownContent {
+			display: block;
+		}
+	}
+`;
+
+export const DropDownButton = styled.button`
+	${sharedButtonProperties};
+	font-size: 0.8rem;
+	font-weight: 600;
+	@media ${device.sm} {
+		font-size: 1rem;
+	}
+`;
+
+export const DropDownContent = styled.div`
+	display: none;
+	position: absolute;
+	background-color: ${(props) => props.theme.cardBgColor};
+	min-height: fit-content;
+	min-width: 8rem;
+	border-radius: 1rem;
+	overflow: hidden;
+	font-size: 0.8rem;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	a {
+		display: block;
+		text-decoration: none;
+		color: ${(props) => props.theme.fontColor};
+		padding-top: 1rem;
+		padding-left: 1rem;
+		height: 2rem;
+		&:hover {
+			background-color: ${(props) => props.theme.borderColor};
+			color: #fff;
+		}
+	}
+	@media ${device.sm} {
+		font-size: 1rem;
 	}
 `;
