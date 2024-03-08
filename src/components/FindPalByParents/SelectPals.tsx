@@ -53,11 +53,7 @@ export const SelectPals = () => {
 			} else if (combiRank.toString().endsWith('5')) {
 				result = endWithFiveChecker(data, combiRank);
 			} else {
-				const findByRoundingCombiRank = findByRounding_CombiRank(
-					data,
-					combiRank
-				);
-				result = findByRoundingCombiRank;
+				result = findByRounding_CombiRank(data, combiRank);
 			}
 			if (result) setBreedingPalResult(result);
 		}
