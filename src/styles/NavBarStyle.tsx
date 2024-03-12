@@ -61,15 +61,6 @@ export const NavBarContainer = styled.nav`
 	}
 `;
 
-export const DropDownContainer = styled.div`
-	grid-column-start: 2;
-	&:hover {
-		.dropdownContent {
-			display: block;
-		}
-	}
-`;
-
 export const DropDownButton = styled.button`
 	${sharedButtonProperties};
 	font-size: 0.8rem;
@@ -104,5 +95,14 @@ export const DropDownContent = styled.div`
 	}
 	@media ${device.sm} {
 		font-size: 1rem;
+	}
+`;
+
+export const DropDownContainer = styled.div`
+	grid-column-start: 2;
+	&:hover {
+		${DropDownContent} {
+			display: block;
+		}
 	}
 `;
