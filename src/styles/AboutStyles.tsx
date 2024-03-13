@@ -5,7 +5,8 @@ export const Container = styled.div`
 	width: 12rem;
 	height: 25rem;
 	padding: 2rem;
-	overflow-x: wrap;
+	/* overflow-x: wrap; */
+	overflow-y: scroll;
 	background-color: ${(props) => props.theme.cardBgColor};
 	color: ${(props) => props.theme.fontColor};
 	position: relative; /* Ensure the container is a positioned parent for absolute positioning */

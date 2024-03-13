@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import * as Styles from '../../styles/GlobalStyles';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '../../contexts/Theme.Context';
 
-export const Navbar = () => {
-	const { pageColorTheme, setPageColorTheme } = useContext(ThemeContext);
-
+export const Navbar: React.FC<{
+	pageColorTheme: 'dark' | 'light';
+	setPageColorTheme: React.Dispatch<React.SetStateAction<'dark' | 'light'>>;
+}> = ({ pageColorTheme, setPageColorTheme }) => {
 	const handleThemeToggle = () => {
 		setPageColorTheme(pageColorTheme === 'dark' ? 'light' : 'dark');
 	};
-	console.log('render');
+	// console.log('render');
 	return (
 		<Styles.NavBar.NavBarContainer>
 			<Styles.NavBar.DropDownContainer>
