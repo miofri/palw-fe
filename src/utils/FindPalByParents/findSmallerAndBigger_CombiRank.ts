@@ -1,5 +1,5 @@
 import { UpdateCombiRankModel } from '../../components/FindPalByParents/SelectPals';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import { breedingTable } from '../data/specialPalBreedingTable';
 import { specialPalSameParents } from '../data/specialPalSameParents';
 /**
@@ -7,7 +7,7 @@ import { specialPalSameParents } from '../data/specialPalSameParents';
  */
 export const findSmallerAndBigger_CombiRank = async (
 	updateCombiRank: UpdateCombiRankModel,
-	data: breedingPalModel[] | undefined,
+	data: BreedingPalModel[] | undefined,
 	combiRank: number
 ) => {
 	const specialPals = new Set(breedingTable.map((entry) => entry.result));

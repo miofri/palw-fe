@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { getPalElement } from '../../utils/FindPalByParents/getPalElement';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import * as Styles from '../../styles/PalListStyle';
 const elementUrl = process.env.REACT_APP_PAL_ELEMENTS_URL;
 
-export const PalCardElements: React.FC<{ breedingPal: breedingPalModel }> = ({
+export const PalCardElements: React.FC<{ breedingPal: BreedingPalModel }> = ({
 	breedingPal,
 }) => {
 	return (

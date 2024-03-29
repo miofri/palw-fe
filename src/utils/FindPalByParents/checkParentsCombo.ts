@@ -1,12 +1,12 @@
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import { breedingTable } from '../data/specialPalBreedingTable';
 
 export const checkParentsCombo = (
 	selectedPals: {
-		pal1: breedingPalModel | undefined;
-		pal2: breedingPalModel | undefined;
+		pal1: BreedingPalModel | undefined;
+		pal2: BreedingPalModel | undefined;
 	},
-	data: breedingPalModel[] | undefined
+	data: BreedingPalModel[] | undefined
 ) => {
 	if (data && selectedPals.pal1 && selectedPals.pal2)
 		for (const entry of breedingTable) {

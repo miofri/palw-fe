@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
+import { useSelector } from 'react-redux';
+
+import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 import * as Styles from '../../styles/GlobalStyles';
 import { transformAndMapByImageName } from '../../utils/FindPalByParents/mappedByImageName';
 import { findByCodeName } from '../../utils/FindPalByParents/findByCodeName';
 import { getPalRarityLabel } from '../../utils/FindPalByParents/getPalRarityLabel';
 import { PalCardElements } from './PalCardElements';
 import { RootState } from '../../store/store';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
-import { useSelector } from 'react-redux';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import { useSetActiveSlot } from '../../customhooks/useSetPal';
 
 export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
-	const { data, isLoading } = useGetBreedingPalsQuery();
+	const { data, isLoading } = useGetBreedingPalQuery();
 
 	const mapPalByImageName = useSelector(
 		(state: RootState) => state.mapPalByImageName
@@ -22,7 +23,7 @@ export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 	);
 	const setActiveSlot = useSetActiveSlot();
 	const [filteredData, setFilteredData] = useState<
-		breedingPalModel[] | undefined
+		BreedingPalModel[] | undefined
 	>(undefined);
 	useEffect(() => {
 		if (data) {
@@ -39,7 +40,7 @@ export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 		}
 	}, [data, filter]);
 
-	const handlePalCardClick = (breedingPal: breedingPalModel) => {
+	const handlePalCardClick = (breedingPal: BreedingPalModel) => {
 		setActiveSlot(breedingPal, activeSlot);
 	};
 	return (

@@ -1,11 +1,11 @@
-import { mappedByImageNameModel } from '../../interfaces/mappedByImageNameModel';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { MappedByImageNameModel } from '../../interfaces/MappedByImageNameModel';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import { mapPalByImageNameSlice } from '../../store/slices/mapPalByImageNameSlice';
 import { store } from '../../store/store';
 
 const mappedByImageName = (
-	data: breedingPalModel[] | undefined,
-	mappedData: mappedByImageNameModel[]
+	data: BreedingPalModel[] | undefined,
+	mappedData: MappedByImageNameModel[]
 ) => {
 	const newMappedData = data?.map((p) => ({
 		imageName: `T_${p.CodeName}_icon_normal.webp`,
@@ -18,10 +18,10 @@ const mappedByImageName = (
 };
 
 export const transformAndMapByImageName = (
-	data: breedingPalModel[] | undefined
+	data: BreedingPalModel[] | undefined
 ) => {
 	if (!data) return [];
-	const mappedData: mappedByImageNameModel[] | undefined = [];
+	const mappedData: MappedByImageNameModel[] | undefined = [];
 	mappedByImageName(data, mappedData);
 	store.dispatch(
 		mapPalByImageNameSlice.actions.setMappedByImageName(mappedData)

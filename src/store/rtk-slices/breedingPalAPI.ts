@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 
 export const breedingPalApi = createApi({
 	reducerPath: 'breedingPalApi',
@@ -10,13 +10,13 @@ export const breedingPalApi = createApi({
 		{ maxRetries: 10 }
 	),
 	endpoints: (builder) => ({
-		getBreedingPals: builder.query<breedingPalModel[], void>({
+		getBreedingPal: builder.query<BreedingPalModel[], void>({
 			query: () => 'api/pal',
-			transformResponse: (response: breedingPalModel[]) => {
+			transformResponse: (response: BreedingPalModel[]) => {
 				return response.sort((a, b) => a.ZukanIndex - b.ZukanIndex);
 			},
 		}),
 	}),
 });
 
-export const { useGetBreedingPalsQuery } = breedingPalApi;
+export const { useGetBreedingPalQuery } = breedingPalApi;

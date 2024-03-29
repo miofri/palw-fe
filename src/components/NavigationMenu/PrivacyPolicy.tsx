@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Layout } from '../Layout';
 import * as Styles from '../../styles/GlobalStyles';
 

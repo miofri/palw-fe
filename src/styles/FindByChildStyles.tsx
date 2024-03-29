@@ -1,3 +1,4 @@
+import { sharedButtonProperties } from './Shared';
 import styled from 'styled-components';
 import { device } from './breakpoints';
 
@@ -28,8 +29,16 @@ export const Container = styled.div`
 	}
 	@media ${device.md} {
 		width: 40rem;
-		height: 30rem;
+		height: 40rem;
 	}
+	@media ${device.lg} {
+		width: 70rem;
+		height: 40rem;
+	}
+`;
+
+export const Button = styled.button`
+	${sharedButtonProperties}
 `;
 
 export const Disclaimer = styled.p`

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import * as Styles from '../../styles/GlobalStyles';
 import { Link } from 'react-router-dom';
+
+import * as Styles from '../../styles/GlobalStyles';
 import { ThemeContext } from '../../contexts/Theme.Context';
 
 export const Navbar = () => {
@@ -9,7 +10,6 @@ export const Navbar = () => {
 	const handleThemeToggle = () => {
 		setPageColorTheme(pageColorTheme === 'dark' ? 'light' : 'dark');
 	};
-	console.log('render');
 	return (
 		<Styles.NavBar.NavBarContainer>
 			<Styles.NavBar.DropDownContainer>
@@ -20,9 +20,12 @@ export const Navbar = () => {
 					<Link to="/privacypolicy">Privacy Policy</Link>
 				</Styles.NavBar.DropDownContent>
 			</Styles.NavBar.DropDownContainer>
-			<Link to="/" className="title">
-				Palworld breeding combination calculator
-			</Link>
+			<Styles.NavBar.NavBarTitle>
+				<Link to="/">Palworld breeding combination calculator</Link>
+			</Styles.NavBar.NavBarTitle>
+			<Styles.NavBar.NavBarToParent>
+				<Link to="/findbychild">Find by Pal</Link>
+			</Styles.NavBar.NavBarToParent>
 			<button
 				onClick={() => handleThemeToggle()}
 				className="material-symbols-outlined"

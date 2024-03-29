@@ -1,13 +1,14 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import { RootState, store } from '../../store/store';
 import {
 	activeSlotType,
 	selectPalActiveSlotSlice,
 } from '../../store/slices/selectPalActiveSlotSlice';
-import { useGetBreedingPalsQuery } from '../../store/rtk-slices/breedingPalAPI';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import { findByRounding_CombiRank } from '../../utils/FindPalByParents/findByRounding_CombiRank';
 import * as Style from '../../styles/GlobalStyles';
 import { checkParentsCombo } from '../../utils/FindPalByParents/checkParentsCombo';
@@ -15,12 +16,12 @@ import { findByCodeName } from '../../utils/FindPalByParents/findByCodeName';
 import { endWithFiveChecker } from '../../utils/FindPalByParents/endWithFiveChecker';
 
 export interface UpdateCombiRankModel {
-	smallerCombiRank: breedingPalModel | undefined;
-	biggerCombiRank: breedingPalModel | undefined;
+	smallerCombiRank: BreedingPalModel | undefined;
+	biggerCombiRank: BreedingPalModel | undefined;
 }
 
 export const SelectPals = () => {
-	const { data } = useGetBreedingPalsQuery();
+	const { data } = useGetBreedingPalQuery();
 	const activeSlot = useSelector(
 		(state: RootState) => state.selectPalActiveSlot.activeSlot
 	);
@@ -31,7 +32,7 @@ export const SelectPals = () => {
 		(state: RootState) => state.mapPalByImageName
 	);
 	const [breedingPalResult, setBreedingPalResult] = useState<
-		breedingPalModel | undefined
+		BreedingPalModel | undefined
 	>(undefined);
 	const imgURLBase = process.env.REACT_APP_PAL_IMAGES_URL;
 

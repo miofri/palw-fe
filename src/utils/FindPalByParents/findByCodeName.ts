@@ -1,7 +1,7 @@
-import { mappedByImageNameModel } from '../../interfaces/mappedByImageNameModel';
+import { MappedByImageNameModel } from '../../interfaces/MappedByImageNameModel';
 
 export const findByCodeName = (
-	mapped: mappedByImageNameModel[],
+	mapped: MappedByImageNameModel[],
 	codeName: string
 ): string | undefined => {
 	const findPal = mapped.find(

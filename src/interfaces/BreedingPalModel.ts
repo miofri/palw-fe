@@ -1,4 +1,4 @@
-export interface breedingPalModel {
+export interface BreedingPalModel {
 	Name: string;
 	CodeName: string;
 	ZukanIndex: number;

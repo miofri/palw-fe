@@ -1,5 +1,5 @@
 import { UpdateCombiRankModel } from '../../components/FindPalByParents/SelectPals';
-import { breedingPalModel } from '../../interfaces/breedingPalModel';
+import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import { checkEqualCombiRank } from './checkEqualCombiRank';
 import { breedingTable } from '../data/specialPalBreedingTable';
 import { findSmallerAndBigger_CombiRank } from './findSmallerAndBigger_CombiRank';
@@ -7,7 +7,7 @@ import { findSmallerAndBigger_CombiRank } from './findSmallerAndBigger_CombiRank
 const specialPals = new Set(breedingTable.map((entry) => entry.result));
 
 export const findByRounding_CombiRank = (
-	data: breedingPalModel[] | undefined,
+	data: BreedingPalModel[] | undefined,
 	combiRank: number
 ) => {
 	const updateCombiRank: UpdateCombiRankModel = {

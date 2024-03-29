@@ -5,19 +5,24 @@ import { store } from './store/store';
 import { PrivacyPolicy } from './components/NavigationMenu/PrivacyPolicy';
 import { PalSelection } from './components/FindPalByParents/PalSelection';
 import { About } from './components/NavigationMenu/About';
+import { ChildPalList } from './components/FindPalByChild/ChildPalList';
+import { ThemeContextProvider } from './contexts/Theme.Context';
 
 export const App = () => {
 	return (
 		<Provider store={store}>
-			<Router>
-				<Routes>
-					<Route path="/">
-						<Route index element={<PalSelection />} />
-						<Route path="/about" element={<About />} />
-						<Route path="/privacypolicy" element={<PrivacyPolicy />} />
-					</Route>
-				</Routes>
-			</Router>
+			<ThemeContextProvider>
+				<Router>
+					<Routes>
+						<Route path="/">
+							<Route index element={<PalSelection />} />
+							<Route path="/findbychild" element={<ChildPalList />} />
+							<Route path="/about" element={<About />} />
+							<Route path="/privacypolicy" element={<PrivacyPolicy />} />
+						</Route>
+					</Routes>
+				</Router>
+			</ThemeContextProvider>
 		</Provider>
 	);
 };

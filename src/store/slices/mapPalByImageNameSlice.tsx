@@ -1,13 +1,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { mappedByImageNameModel } from '../../interfaces/mappedByImageNameModel';
+import { MappedByImageNameModel } from '../../interfaces/MappedByImageNameModel';
 
 export const mapPalByImageNameSlice = createSlice({
 	name: 'mapPalByImageName',
-	initialState: [] as mappedByImageNameModel[],
+	initialState: [] as MappedByImageNameModel[],
 	reducers: {
 		setMappedByImageName: (
 			state,
-			action: PayloadAction<mappedByImageNameModel[]>
+			action: PayloadAction<MappedByImageNameModel[]>
 		) => {
 			return action.payload;
 		},
