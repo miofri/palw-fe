@@ -9,13 +9,16 @@ import { ThemeContext } from '../contexts/Theme.Context';
 export const Layout: React.FC<{
 	children: ReactNode;
 }> = ({ children }) => {
-	const { pageColorTheme } = useContext(ThemeContext);
+	const { pageColorTheme, setPageColorTheme } = useContext(ThemeContext);
 	return (
 		<ThemeProvider
 			theme={pageColorTheme === 'dark' ? darkThemeColors : lightThemeColors}
 		>
 			<Background>
-				<Navbar />
+				<Navbar
+					pageColorTheme={pageColorTheme}
+					setPageColorTheme={setPageColorTheme}
+				/>
 				{children}
 			</Background>
 		</ThemeProvider>
