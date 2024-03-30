@@ -9,6 +9,8 @@ export const Container = styled.div`
 	position: relative; /* Ensure the container is a positioned parent for absolute positioning */
 	border-radius: 1rem;
 	font-size: 0.8rem;
+	padding: 0.8rem 0rem;
+
 	hr {
 		opacity: 20%;
 	}
@@ -22,14 +24,15 @@ export const Container = styled.div`
 		height: 44rem;
 	}
 	@media ${device.sm} {
-		width: 28rem;
+		width: 30rem;
 		height: 44rem;
 		font-size: 1rem;
-		padding: 1.2rem 4rem;
+		padding: 1.2rem 3rem;
 	}
 	@media ${device.md} {
 		width: 42rem;
 		height: 46rem;
+		padding: 1.2rem 4rem;
 	}
 	@media ${device.lg} {
 		width: 60rem;
@@ -63,7 +66,7 @@ export const InnerContainer = styled.div`
 		height: 32rem;
 	}
 	@media ${device.sm} {
-		width: 32rem;
+		width: 30rem;
 		height: 26rem;
 	}
 	@media ${device.md} {
@@ -174,8 +177,8 @@ export const Form = styled.form`
 	border-bottom: 1px grey solid;
 	padding-bottom: 1rem;
 	margin: auto auto;
-	width: 16rem;
-	font-size: 0.5rem;
+	width: 21.6rem;
+	font-size: 0.7rem;
 	@media ${device.xs} {
 		margin-bottom: 1rem;
 		font-size: 0.8rem;
@@ -187,13 +190,15 @@ export const Form = styled.form`
 	}
 	select,
 	input {
-		width: 2rem;
+		width: 4rem;
+		font-size: 0.8rem;
+
 		@media ${device.xs} {
-			font-size: 1rem;
 			width: 3rem;
 		}
 		@media ${device.sm} {
 			width: auto;
+			width: 6rem;
 		}
 	}
 `;

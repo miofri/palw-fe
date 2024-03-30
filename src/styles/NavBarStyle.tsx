@@ -74,6 +74,7 @@ export const Link = css`
 export const Title = styled.div`
 	grid-column-start: 4;
 	grid-column-end: 10;
+	font-size: 0.8rem;
 	text-align: center;
 	a {
 		${Link}
@@ -88,7 +89,7 @@ export const ToParent = styled.button`
 	grid-column-start: 10;
 	background-color: ${(props) => props.theme.secondaryButtonColor};
 	height: 2rem;
-	width: 8rem;
+	width: 5rem;
 	margin: 0;
 
 	border: none;
@@ -96,9 +97,15 @@ export const ToParent = styled.button`
 	cursor: pointer;
 
 	a {
-		font-size: 0.9rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		text-decoration: none;
 		color: #ffeeee;
+	}
+	@media ${device.xs} {
+		width: 8rem;
+		a {
+			font-size: 0.9rem;
+		}
 	}
 `;
