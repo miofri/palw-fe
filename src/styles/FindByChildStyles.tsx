@@ -171,7 +171,7 @@ export const Image = styled.img`
 export const Form = styled.form`
 	${sharedFlexProperty}
 	margin-bottom: 1rem;
-	gap: 0.8rem;
+	gap: 0.5rem;
 	border-bottom: 1px grey solid;
 	padding-bottom: 1rem;
 	margin-bottom: 0;
@@ -183,13 +183,14 @@ export const Form = styled.form`
 	}
 	@media ${device.sm} {
 		font-size: 1rem;
+		gap: 0.8rem;
 	}
-	select {
-		font-size: 0.6rem;
+	select,
+	input {
 		width: 2rem;
 		@media ${device.xs} {
 			font-size: 1rem;
-			width: 5rem;
+			width: 3rem;
 		}
 		@media ${device.sm} {
 			width: auto;

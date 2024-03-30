@@ -11,17 +11,21 @@ export const TableResult: React.FC<{
 }> = ({ parentsResult, filter }) => {
 	const imageUrl = process.env.REACT_APP_PAL_IMAGES_URL;
 	const { data } = useGetBreedingPalQuery();
-	const [filterData, setFilterData] = useState<ParentsModel[]>();
+	const [filterData, setFilterData] = useState<ParentsModel[] | undefined>(
+		parentsResult
+	);
 
 	useEffect(() => {
-		if (parentsResult) {
+		if (parentsResult && filter) {
 			const filterResult = parentsResult.filter((pal) =>
 				pal.pal.toLowerCase().includes(filter.toLowerCase())
 			);
 			setFilterData(filterResult);
 			console.log(filterData);
+		} else {
+			setFilterData(parentsResult);
 		}
-	}, [filter]);
+	}, [filter, parentsResult]);
 
 	return (
 		<Styles.FindByChild.TableContainer>
@@ -33,7 +37,6 @@ export const TableResult: React.FC<{
 						/>
 						{p.pal}
 					</Styles.FindByChild.Pal>
-					{/*<Styles.FindByChild.Pair>paired with: </Styles.FindByChild.Pair>*/}
 					<Styles.FindByChild.PlusSign>+</Styles.FindByChild.PlusSign>
 					<React.Fragment key={p.pal}>
 						{p.pair.map((pairs) => (
