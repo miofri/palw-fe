@@ -17,7 +17,8 @@ export const NavBarContainer = styled.nav`
 	background-color: ${(props) => props.theme.cardBgColor};
 
 	.material-symbols-outlined {
-		grid-column-start: 12;
+		grid-column-start: 11;
+		width: fit-content;
 		${sharedButtonProperties}
 	}
 `;
@@ -65,33 +66,39 @@ export const DropDownContainer = styled.div`
 	}
 `;
 
-export const NavBarLink = css`
+export const Link = css`
 	color: ${(props) => props.theme.fontColor};
 	text-decoration: none;
 `;
 
-export const NavBarTitle = styled.div`
+export const Title = styled.div`
 	grid-column-start: 4;
 	grid-column-end: 10;
 	text-align: center;
 	a {
-		font-weight: 600;
-		${NavBarLink}
+		${Link}
+		font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 	}
 	@media ${device.sm} {
 		font-size: 1rem;
 	}
 `;
 
-export const NavBarToParent = styled.button`
-	${sharedButtonProperties}
+export const ToParent = styled.button`
 	grid-column-start: 10;
-	grid-column-end: 11;
+	background-color: ${(props) => props.theme.secondaryButtonColor};
+	height: 2rem;
+	width: 8rem;
+	margin: 0;
+
+	border: none;
+	border-radius: 0.4rem;
+	cursor: pointer;
+
 	a {
-		margin: 0;
-		height: fit-content;
 		font-size: 0.9rem;
 		font-weight: 600;
-		${NavBarLink}
+		text-decoration: none;
+		color: #ffeeee;
 	}
 `;

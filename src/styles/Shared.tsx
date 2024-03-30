@@ -21,4 +21,5 @@ export const sharedButtonProperties = css`
 	border: none;
 	height: 2rem;
 	border-radius: 0.4rem;
+	cursor: pointer;
 `;

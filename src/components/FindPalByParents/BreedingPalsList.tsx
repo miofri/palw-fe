@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 import * as Styles from '../../styles/GlobalStyles';
 import { transformAndMapByImageName } from '../../utils/FindPalByParents/mappedByImageName';
-import { findByCodeName } from '../../utils/FindPalByParents/findByCodeName';
+import { findImageByCodeName } from '../../utils/FindPalByParents/findImageByCodeName';
 import { getPalRarityLabel } from '../../utils/FindPalByParents/getPalRarityLabel';
 import { PalCardElements } from './PalCardElements';
 import { RootState } from '../../store/store';
@@ -54,7 +54,7 @@ export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 					>
 						<Styles.BreedingPal.CardFigure>
 							<img
-								src={`${imageUrl}${findByCodeName(
+								src={`${imageUrl}${findImageByCodeName(
 									mapPalByImageName,
 									breedingPal.CodeName
 								)}`}

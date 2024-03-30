@@ -5,6 +5,8 @@ import { Layout } from '../Layout';
 import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 import { ParentsModel } from '../../interfaces/ParentsModel';
 import { useLazyGetParentsQuery } from '../../store/rtk-slices/parentAPI';
+import { PalSelect } from './PalSelect';
+import { TableResult } from './TableResult';
 
 export const ChildPalList: React.FC = () => {
 	const { data, isLoading } = useGetBreedingPalQuery();
@@ -12,15 +14,18 @@ export const ChildPalList: React.FC = () => {
 	const [selectPal, setSelectPal] = useState('Anubis');
 	const [parentsResult, setParentsResult] = useState<ParentsModel[]>();
 	const [getParents, result] = useLazyGetParentsQuery();
-
+	const [filter, setFilter] = useState<string>('');
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault();
 		getParents(selectPal);
 	};
 
 	useEffect(() => {
-		if (result) {
-			setParentsResult(result.currentData);
+		if (result && result.currentData) {
+			const sortedResult = [...result.currentData].sort((a, b) =>
+				a.pal.localeCompare(b.pal)
+			);
+			setParentsResult(sortedResult);
 			console.log(parentsResult);
 		}
 	}, [result]);
@@ -29,21 +34,19 @@ export const ChildPalList: React.FC = () => {
 		return (
 			<Layout>
 				<Styles.FindByChild.Container>
-					<form>
-						<label htmlFor="pals">Choose Pal: </label>
-						<select
-							name="pals"
-							id="pals"
-							onChange={(e) => setSelectPal(e.target.value)}
-						>
-							{nameOnly!.map((pal) => (
-								<option key={pal} value={pal}>
-									{pal}
-								</option>
-							))}
-						</select>
-						<button onClick={(e) => handleClick(e)}>Find parents</button>
-					</form>
+					<Styles.FindByChild.Heading1>
+						Find parents combination by pal
+					</Styles.FindByChild.Heading1>
+					<PalSelect
+						nameOnly={nameOnly}
+						setSelectPal={setSelectPal}
+						handleClick={handleClick}
+						setFilter={setFilter}
+					/>
+					<h2>Pairs: </h2>
+					<Styles.FindByChild.InnerContainer>
+						<TableResult parentsResult={parentsResult} filter={filter} />
+					</Styles.FindByChild.InnerContainer>
 				</Styles.FindByChild.Container>
 			</Layout>
 		);

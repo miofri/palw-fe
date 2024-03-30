@@ -4,6 +4,7 @@ export const lightThemeColors = {
 	backgroundColor: '#F7D0FF',
 	cardBgColor: '#FFF1F8',
 	fontColor: '#BB62B8',
+	secondaryButtonColor: '#ee9dff',
 	colorScheme: 'light',
 };
 
@@ -13,5 +14,6 @@ export const darkThemeColors = {
 	backgroundColor: '#111827',
 	cardBgColor: '#1f2937',
 	fontColor: '#fff',
+	secondaryButtonColor: '#3730a3',
 	colorScheme: 'dark',
 };

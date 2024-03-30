@@ -20,12 +20,12 @@ export const Navbar = () => {
 					<Link to="/privacypolicy">Privacy Policy</Link>
 				</Styles.NavBar.DropDownContent>
 			</Styles.NavBar.DropDownContainer>
-			<Styles.NavBar.NavBarTitle>
-				<Link to="/">Palworld breeding combination calculator</Link>
-			</Styles.NavBar.NavBarTitle>
-			<Styles.NavBar.NavBarToParent>
+			<Styles.NavBar.Title>
+				<Link to="/">Palworld Calculator</Link>
+			</Styles.NavBar.Title>
+			<Styles.NavBar.ToParent>
 				<Link to="/findbychild">Find by Pal</Link>
-			</Styles.NavBar.NavBarToParent>
+			</Styles.NavBar.ToParent>
 			<button
 				onClick={() => handleThemeToggle()}
 				className="material-symbols-outlined"

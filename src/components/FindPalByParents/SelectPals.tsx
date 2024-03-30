@@ -12,7 +12,7 @@ import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import { findByRounding_CombiRank } from '../../utils/FindPalByParents/findByRounding_CombiRank';
 import * as Style from '../../styles/GlobalStyles';
 import { checkParentsCombo } from '../../utils/FindPalByParents/checkParentsCombo';
-import { findByCodeName } from '../../utils/FindPalByParents/findByCodeName';
+import { findImageByCodeName } from '../../utils/FindPalByParents/findImageByCodeName';
 import { endWithFiveChecker } from '../../utils/FindPalByParents/endWithFiveChecker';
 
 export interface UpdateCombiRankModel {
@@ -71,7 +71,7 @@ export const SelectPals = () => {
 			>
 				{selectedPals.pal1 ? (
 					<img
-						src={`${imgURLBase}${findByCodeName(
+						src={`${imgURLBase}${findImageByCodeName(
 							mapPalByImageName,
 							selectedPals.pal1?.CodeName
 						)}`}
@@ -89,7 +89,7 @@ export const SelectPals = () => {
 			>
 				{selectedPals.pal2 ? (
 					<img
-						src={`${imgURLBase}${findByCodeName(
+						src={`${imgURLBase}${findImageByCodeName(
 							mapPalByImageName,
 							selectedPals.pal2?.CodeName
 						)}`}
@@ -103,7 +103,7 @@ export const SelectPals = () => {
 			<Style.SelectPal.SelectionCard data-testid="palselect-result">
 				{breedingPalResult ? (
 					<img
-						src={`${imgURLBase}${findByCodeName(
+						src={`${imgURLBase}${findImageByCodeName(
 							mapPalByImageName,
 							breedingPalResult.CodeName
 						)}`}

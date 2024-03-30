@@ -1,6 +1,6 @@
 import { MappedByImageNameModel } from '../../interfaces/MappedByImageNameModel';
 
-export const findByCodeName = (
+export const findImageByCodeName = (
 	mapped: MappedByImageNameModel[],
 	codeName: string
 ): string | undefined => {
