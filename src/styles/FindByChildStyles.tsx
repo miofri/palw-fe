@@ -170,11 +170,10 @@ export const Image = styled.img`
 
 export const Form = styled.form`
 	${sharedFlexProperty}
-	margin-bottom: 1rem;
 	gap: 0.5rem;
 	border-bottom: 1px grey solid;
 	padding-bottom: 1rem;
-	margin-bottom: 0;
+	margin: auto auto;
 	width: 16rem;
 	font-size: 0.5rem;
 	@media ${device.xs} {
