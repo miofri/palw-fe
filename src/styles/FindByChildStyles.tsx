@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { device } from './breakpoints';
 
 export const Container = styled.div`
-	width: 19rem;
-	height: 28rem;
+	width: 22rem;
+	height: 32rem;
 	background-color: ${(props) => props.theme.cardBgColor};
 	color: ${(props) => props.theme.fontColor};
 	position: relative; /* Ensure the container is a positioned parent for absolute positioning */
@@ -29,7 +29,7 @@ export const Container = styled.div`
 	}
 	@media ${device.md} {
 		width: 42rem;
-		height: 44rem;
+		height: 46rem;
 	}
 	@media ${device.lg} {
 		width: 60rem;
@@ -52,15 +52,15 @@ export const sharedFlexProperty = css`
 `;
 
 export const InnerContainer = styled.div`
-	width: 15.9rem;
-	height: 12rem;
+	width: 21rem;
+	height: 22rem;
 	overflow-y: scroll;
 	overflow-x: scroll;
 	font-size: 0.6rem;
 	margin: auto;
 	@media ${device.xs} {
 		width: 21.6rem;
-		height: 26rem;
+		height: 32rem;
 	}
 	@media ${device.sm} {
 		width: 32rem;
@@ -69,7 +69,7 @@ export const InnerContainer = styled.div`
 	@media ${device.md} {
 		font-size: 0.6rem;
 		width: 42rem;
-		height: 30rem;
+		height: 34rem;
 	}
 	@media ${device.lg} {
 		font-size: 0.8rem;
@@ -177,6 +177,7 @@ export const Form = styled.form`
 	width: 16rem;
 	font-size: 0.5rem;
 	@media ${device.xs} {
+		margin-bottom: 1rem;
 		font-size: 0.8rem;
 		width: auto;
 	}
