@@ -1,7 +1,11 @@
 /* eslint-env node */
 module.exports = {
-	extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+	extends: [
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:cypress/recommended',
+	],
 	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint'],
+	plugins: ['@typescript-eslint', 'react', 'cypress'],
 	root: true,
 };
