@@ -16,18 +16,26 @@ export const Container = styled.div`
 	}
 
 	h2 {
-		width: 90%;
-		margin: 0.5rem auto;
+		width: 100%;
+		margin: 0.7rem auto;
+		text-align: center;
+		font-size: 0.8rem;
+		font-weight: 400;
 	}
+
 	@media ${device.xs} {
 		width: 24rem;
 		height: 44rem;
+		font-size: 1rem;
 	}
 	@media ${device.sm} {
 		width: 30rem;
 		height: 44rem;
 		font-size: 1rem;
 		padding: 1.2rem 3rem;
+		h2 {
+			font-size: 1rem;
+		}
 	}
 	@media ${device.md} {
 		width: 42rem;
@@ -52,6 +60,7 @@ export const sharedFlexProperty = css`
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
+	flex-wrap: wrap;
 `;
 
 export const InnerContainer = styled.div`
@@ -146,7 +155,6 @@ export const Pal = styled.div`
 export const Pair = styled.div`
 	grid-column: span 2;
 	grid-row: span 2;
-	border-right: 1px grey solid;
 	${sharedFlexProperty}
 	flex-direction: column;
 	text-align: center;
@@ -173,11 +181,13 @@ export const Image = styled.img`
 
 export const Form = styled.form`
 	${sharedFlexProperty}
+	flex-wrap: wrap;
+
 	gap: 0.5rem;
 	border-bottom: 1px grey solid;
 	padding-bottom: 1rem;
 	margin: auto auto;
-	width: 21.6rem;
+	width: 20rem;
 	font-size: 0.7rem;
 	@media ${device.xs} {
 		margin-bottom: 1rem;
@@ -226,6 +236,7 @@ export const HomeButton = styled(Button)`
 	color: white;
 	width: 3rem;
 	font-size: 0.6rem;
+	align-self: flex-end;
 	@media ${device.xs} {
 		font-size: 0.8rem;
 	}

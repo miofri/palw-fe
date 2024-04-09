@@ -43,7 +43,7 @@ export const ChildPalList: React.FC = () => {
 						handleClick={handleClick}
 						setFilter={setFilter}
 					/>
-					<h2>Pairs: </h2>
+					<h2>Breed the left hand side pal with any on the right</h2>
 					<Styles.FindByChild.InnerContainer>
 						<TableResult parentsResult={parentsResult} filter={filter} />
 					</Styles.FindByChild.InnerContainer>

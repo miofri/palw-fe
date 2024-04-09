@@ -32,7 +32,7 @@ export const PalSelect: React.FC<{
 			<input
 				type="text"
 				id="filter"
-				placeholder="Filter by name"
+				placeholder="Filter result"
 				onChange={(e) => handleOnChange(e)}
 			/>
 			<Link to="/">
