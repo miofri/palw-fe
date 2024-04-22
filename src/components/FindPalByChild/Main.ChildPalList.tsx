@@ -4,7 +4,7 @@ import * as Styles from '../../styles/GlobalStyles';
 import { Layout } from '../Layout';
 import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 import { ParentsModel } from '../../interfaces/ParentsModel';
-import { useLazyGetParentsQuery } from '../../store/rtk-slices/parentAPI';
+import { useLazyGetByChildQuery } from '../../store/rtk-slices/childAPI';
 import { PalSelect } from './PalSelect';
 import { TableResult } from './TableResult';
 
@@ -13,11 +13,11 @@ export const ChildPalList: React.FC = () => {
 	const nameOnly = data?.map((data) => data.Name).sort();
 	const [selectPal, setSelectPal] = useState('Anubis');
 	const [parentsResult, setParentsResult] = useState<ParentsModel[]>();
-	const [getParents, result] = useLazyGetParentsQuery();
+	const [getByChild, result] = useLazyGetByChildQuery();
 	const [filter, setFilter] = useState<string>('');
 	const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault();
-		getParents(selectPal);
+		getByChild(selectPal);
 	};
 
 	useEffect(() => {
@@ -26,7 +26,6 @@ export const ChildPalList: React.FC = () => {
 				a.pal.localeCompare(b.pal)
 			);
 			setParentsResult(sortedResult);
-			console.log(parentsResult);
 		}
 	}, [result]);
 

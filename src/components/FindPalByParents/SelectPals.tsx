@@ -7,13 +7,14 @@ import {
 	activeSlotType,
 	selectPalActiveSlotSlice,
 } from '../../store/slices/selectPalActiveSlotSlice';
-import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
+//import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
-import { findByRounding_CombiRank } from '../../utils/FindPalByParents/findByRounding_CombiRank';
+//import { findByRounding_CombiRank } from '../../utils/FindPalByParents/findByRounding_CombiRank';
 import * as Style from '../../styles/GlobalStyles';
-import { checkParentsCombo } from '../../utils/FindPalByParents/checkParentsCombo';
+//import { checkParentsCombo } from '../../utils/FindPalByParents/checkParentsCombo';
 import { findImageByCodeName } from '../../utils/FindPalByParents/findImageByCodeName';
-import { endWithFiveChecker } from '../../utils/FindPalByParents/endWithFiveChecker';
+//import { endWithFiveChecker } from '../../utils/FindPalByParents/endWithFiveChecker';
+import { useLazyGetByParentsQuery } from '../../store/rtk-slices/parentComboAPI';
 
 export interface UpdateCombiRankModel {
 	smallerCombiRank: BreedingPalModel | undefined;
@@ -21,7 +22,7 @@ export interface UpdateCombiRankModel {
 }
 
 export const SelectPals = () => {
-	const { data } = useGetBreedingPalQuery();
+	//const { data } = useGetBreedingPalQuery();
 	const activeSlot = useSelector(
 		(state: RootState) => state.selectPalActiveSlot.activeSlot
 	);
@@ -31,9 +32,9 @@ export const SelectPals = () => {
 	const mapPalByImageName = useSelector(
 		(state: RootState) => state.mapPalByImageName
 	);
-	const [breedingPalResult, setBreedingPalResult] = useState<
-		BreedingPalModel | undefined
-	>(undefined);
+	const [breedingPalResult, setBreedingPalResult] =
+		useState<BreedingPalModel>();
+	const [getByParents, getByParentsResult] = useLazyGetByParentsQuery();
 	const imgURLBase = process.env.REACT_APP_PAL_IMAGES_URL;
 
 	const handleClick = (slot: activeSlotType) => {
@@ -41,26 +42,24 @@ export const SelectPals = () => {
 	};
 
 	useEffect(() => {
+		const fetchChild = async () => {
+			await getByParents({
+				pal1: selectedPals.pal1!.Name,
+				pal2: selectedPals.pal2!.Name,
+			});
+		};
 		if (selectedPals.pal1 && selectedPals.pal2) {
-			const combiRank = Math.floor(
-				(selectedPals.pal1.CombiRank + selectedPals.pal2.CombiRank + 1) / 2
-			);
-			let result;
-			const checkParentsComboResult = checkParentsCombo(selectedPals, data);
-			if (checkParentsComboResult !== undefined) {
-				result = checkParentsComboResult;
-			} else if (selectedPals.pal1.CombiRank === selectedPals.pal2.CombiRank) {
-				result = selectedPals.pal1;
-			} else if (combiRank.toString().endsWith('5')) {
-				result = endWithFiveChecker(data, combiRank);
-			} else {
-				result = findByRounding_CombiRank(data, combiRank);
+			fetchChild();
+			if (getByParentsResult && getByParentsResult.currentData) {
+				console.log(getByParentsResult.currentData);
+				setBreedingPalResult(() => {
+					return getByParentsResult.currentData![0];
+				});
 			}
-			if (result) setBreedingPalResult(result);
 		}
-	}, [selectedPals]);
+	}, [selectedPals, getByParentsResult.currentData]);
 
-	useEffect(() => {}, [selectedPals]);
+	useEffect(() => {}, [breedingPalResult]);
 
 	return (
 		<Style.SelectPal.SelectionContainer data-testid="select-pals">

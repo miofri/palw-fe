@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
 import { ParentsModel } from '../../interfaces/ParentsModel';
 
-export const parentApi = createApi({
-	reducerPath: 'parentApi',
+export const childAPI = createApi({
+	reducerPath: 'childAPI',
 	baseQuery: retry(
 		fetchBaseQuery({
 			baseUrl: process.env.REACT_APP_BREEDING_PAL_URL,
@@ -10,10 +10,10 @@ export const parentApi = createApi({
 		{ maxRetries: 10 }
 	),
 	endpoints: (builder) => ({
-		getParents: builder.query<ParentsModel[], string>({
+		getByChild: builder.query<ParentsModel[], string>({
 			query: (palname) => `api/pal/palcombos/${palname}`,
 		}),
 	}),
 });
 
-export const { useLazyGetParentsQuery } = parentApi;
+export const { useLazyGetByChildQuery } = childAPI;
