@@ -11,7 +11,7 @@ export const PalSelection = () => {
 
 	return (
 		<Layout>
-			<Styles.SelectPal.SelectionBodyContainer>
+			<Styles.SelectPal.SelectionBodyContainer data-testid="main-container">
 				<SelectPals />
 				<FilterInputBox setFilter={setFilter} />
 			</Styles.SelectPal.SelectionBodyContainer>

@@ -10,7 +10,11 @@ export const breedingTable = [
 	{ parent1: 'Mossanda', parent2: 'Grizzbolt', result: 'Mossanda Lux' },
 	{ parent1: 'Dinossom', parent2: 'Rayhound', result: 'Dinossom Lux' },
 	{ parent1: 'Jolthog', parent2: 'Pengullet', result: 'Jolthog Cryst' },
-	{ parent1: 'Frostallion', parent2: 'Helzephyr', result: 'Frostallion Noct' },
+	{
+		parent1: 'Frostallion',
+		parent2: 'Helzephyr',
+		result: 'Frostallion Noct',
+	},
 	{ parent1: 'Kingpaca', parent2: 'Reindrix', result: 'Kingpaca Cryst' },
 	{ parent1: 'Lyleen', parent2: 'Menasting', result: 'Lyleen Noct' },
 	{ parent1: 'Leezpunk', parent2: 'Flambelle', result: 'Leezpunk Ignis' },

@@ -3,9 +3,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { store } from './store/store';
 import { PrivacyPolicy } from './components/NavigationMenu/PrivacyPolicy';
-import { PalSelection } from './components/FindPalByParents/PalSelection';
+import { PalSelection } from './components/FindPalByParents/Main.PalSelection';
 import { About } from './components/NavigationMenu/About';
-import { ChildPalList } from './components/FindPalByChild/ChildPalList';
+import { ChildPalList } from './components/FindPalByChild/Main.ChildPalList';
 import { ThemeContextProvider } from './contexts/Theme.Context';
 
 export const App = () => {

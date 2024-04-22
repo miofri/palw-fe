@@ -20,7 +20,7 @@ export const checkSpecialPalAndCombiRank = (
 				? updateCombiRank.biggerCombiRank
 				: updateCombiRank.smallerCombiRank
 			: specialPals.has(updateCombiRank.biggerCombiRank!.Name)
-			? updateCombiRank.smallerCombiRank
-			: updateCombiRank.biggerCombiRank;
+				? updateCombiRank.smallerCombiRank
+				: updateCombiRank.biggerCombiRank;
 	return result;
 };
