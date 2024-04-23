@@ -8,12 +8,10 @@ import {
 	selectPalActiveSlotSlice,
 } from '../../store/slices/selectPalActiveSlotSlice';
 import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
-//import { findByRounding_CombiRank } from '../../utils/FindPalByParents/findByRounding_CombiRank';
 import * as Style from '../../styles/GlobalStyles';
-//import { checkParentsCombo } from '../../utils/FindPalByParents/checkParentsCombo';
-import { findImageByCodeName } from '../../utils/FindPalByParents/findImageByCodeName';
-//import { endWithFiveChecker } from '../../utils/FindPalByParents/endWithFiveChecker';
+import { findImageByName } from '../../utils/FindPalByParents/findImageByName';
 import { useLazyGetByParentsQuery } from '../../store/rtk-slices/parentComboAPI';
+import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 
 export interface UpdateCombiRankModel {
 	smallerCombiRank: BreedingPalModel | undefined;
@@ -27,9 +25,8 @@ export const SelectPals = () => {
 	const selectedPals = useSelector(
 		(state: RootState) => state.selectPal.selectPals
 	);
-	const mapPalByImageName = useSelector(
-		(state: RootState) => state.mapPalByImageName
-	);
+
+	const { data } = useGetBreedingPalQuery();
 	const [getByParents, getByParentsResult] = useLazyGetByParentsQuery();
 	const imgURLBase = process.env.REACT_APP_PAL_IMAGES_URL;
 
@@ -58,8 +55,8 @@ export const SelectPals = () => {
 			>
 				{selectedPals.pal1 ? (
 					<img
-						src={`${imgURLBase}${findImageByCodeName(
-							mapPalByImageName,
+						src={`${imgURLBase}${findImageByName(
+							data,
 							selectedPals.pal1?.CodeName
 						)}`}
 					/>
@@ -76,8 +73,8 @@ export const SelectPals = () => {
 			>
 				{selectedPals.pal2 ? (
 					<img
-						src={`${imgURLBase}${findImageByCodeName(
-							mapPalByImageName,
+						src={`${imgURLBase}${findImageByName(
+							data,
 							selectedPals.pal2?.CodeName
 						)}`}
 					/>
@@ -91,8 +88,8 @@ export const SelectPals = () => {
 				{getByParentsResult !== undefined && getByParentsResult.currentData ? (
 					<>
 						<img
-							src={`${imgURLBase}${findImageByCodeName(
-								mapPalByImageName,
+							src={`${imgURLBase}${findImageByName(
+								data,
 								getByParentsResult.currentData![0].CodeName
 							)}`}
 						/>

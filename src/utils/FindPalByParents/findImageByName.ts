@@ -4,7 +4,9 @@ export const findImageByName = (
 	data: BreedingPalModel[] | undefined,
 	pal: string
 ): string | undefined => {
-	const findCodeName = data?.find((p) => p.Name === pal);
+	const findCodeName = data?.find((p) => p.CodeName === pal);
+	console.log(pal, findCodeName);
+
 	const findPal = `T_${findCodeName?.CodeName}_icon_normal.webp`;
 
 	if (findCodeName?.CodeName === 'PlantSlime_Flower') {
