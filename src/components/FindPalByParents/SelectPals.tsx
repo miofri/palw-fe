@@ -1,5 +1,5 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { RootState, store } from '../../store/store';
@@ -7,7 +7,6 @@ import {
 	activeSlotType,
 	selectPalActiveSlotSlice,
 } from '../../store/slices/selectPalActiveSlotSlice';
-//import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 //import { findByRounding_CombiRank } from '../../utils/FindPalByParents/findByRounding_CombiRank';
 import * as Style from '../../styles/GlobalStyles';
@@ -22,7 +21,6 @@ export interface UpdateCombiRankModel {
 }
 
 export const SelectPals = () => {
-	//const { data } = useGetBreedingPalQuery();
 	const activeSlot = useSelector(
 		(state: RootState) => state.selectPalActiveSlot.activeSlot
 	);
@@ -32,8 +30,6 @@ export const SelectPals = () => {
 	const mapPalByImageName = useSelector(
 		(state: RootState) => state.mapPalByImageName
 	);
-	const [breedingPalResult, setBreedingPalResult] =
-		useState<BreedingPalModel>();
 	const [getByParents, getByParentsResult] = useLazyGetByParentsQuery();
 	const imgURLBase = process.env.REACT_APP_PAL_IMAGES_URL;
 
@@ -50,16 +46,8 @@ export const SelectPals = () => {
 		};
 		if (selectedPals.pal1 && selectedPals.pal2) {
 			fetchChild();
-			if (getByParentsResult && getByParentsResult.currentData) {
-				console.log(getByParentsResult.currentData);
-				setBreedingPalResult(() => {
-					return getByParentsResult.currentData![0];
-				});
-			}
 		}
 	}, [selectedPals, getByParentsResult.currentData]);
-
-	useEffect(() => {}, [breedingPalResult]);
 
 	return (
 		<Style.SelectPal.SelectionContainer data-testid="select-pals">
@@ -100,17 +88,19 @@ export const SelectPals = () => {
 			</Style.SelectPal.SelectionCard>
 			<div className="sign">=</div>
 			<Style.SelectPal.SelectionCard data-testid="palselect-result">
-				{breedingPalResult ? (
-					<img
-						src={`${imgURLBase}${findImageByCodeName(
-							mapPalByImageName,
-							breedingPalResult.CodeName
-						)}`}
-					/>
+				{getByParentsResult !== undefined && getByParentsResult.currentData ? (
+					<>
+						<img
+							src={`${imgURLBase}${findImageByCodeName(
+								mapPalByImageName,
+								getByParentsResult.currentData![0].CodeName
+							)}`}
+						/>
+						<h2>{getByParentsResult.currentData![0]?.Name}</h2>
+					</>
 				) : (
 					<p>Result</p>
 				)}
-				<h2>{breedingPalResult?.Name}</h2>
 			</Style.SelectPal.SelectionCard>
 		</Style.SelectPal.SelectionContainer>
 	);
