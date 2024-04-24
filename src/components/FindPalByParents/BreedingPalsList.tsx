@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 import * as Styles from '../../styles/GlobalStyles';
-import { findImageByName } from '../../utils/FindPalByParents/findImageByName';
+import { findImageByCodeName } from '../../utils/FindPalByParents/findImageByCodeName';
 import { getPalRarityLabel } from '../../utils/FindPalByParents/getPalRarityLabel';
 import { PalCardElements } from './PalCardElements';
 import { RootState } from '../../store/store';
@@ -48,7 +48,7 @@ export const BreedingPalsList: React.FC<{ filter: string }> = ({ filter }) => {
 					>
 						<Styles.BreedingPal.CardFigure>
 							<img
-								src={`${imageUrl}${findImageByName(
+								src={`${imageUrl}${findImageByCodeName(
 									data,
 									breedingPal.CodeName
 								)}`}

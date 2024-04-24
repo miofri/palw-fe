@@ -1,10 +1,10 @@
 import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 
-export const findImageByName = (
+export const findImageByCodeName = (
 	data: BreedingPalModel[] | undefined,
 	pal: string
 ): string | undefined => {
-	const findCodeName = data?.find((p) => p.Name === pal);
+	const findCodeName = data?.find((p) => p.CodeName === pal);
 	const findPal = `T_${findCodeName?.CodeName}_icon_normal.webp`;
 
 	if (findCodeName?.CodeName === 'PlantSlime_Flower') {

@@ -9,7 +9,7 @@ import {
 } from '../../store/slices/selectPalActiveSlotSlice';
 import { BreedingPalModel } from '../../interfaces/BreedingPalModel';
 import * as Style from '../../styles/GlobalStyles';
-import { findImageByName } from '../../utils/FindPalByParents/findImageByName';
+import { findImageByCodeName } from '../../utils/FindPalByParents/findImageByCodeName';
 import { useLazyGetByParentsQuery } from '../../store/rtk-slices/parentComboAPI';
 import { useGetBreedingPalQuery } from '../../store/rtk-slices/breedingPalAPI';
 
@@ -55,7 +55,7 @@ export const SelectPals = () => {
 			>
 				{selectedPals.pal1 ? (
 					<img
-						src={`${imgURLBase}${findImageByName(
+						src={`${imgURLBase}${findImageByCodeName(
 							data,
 							selectedPals.pal1?.CodeName
 						)}`}
@@ -73,7 +73,7 @@ export const SelectPals = () => {
 			>
 				{selectedPals.pal2 ? (
 					<img
-						src={`${imgURLBase}${findImageByName(
+						src={`${imgURLBase}${findImageByCodeName(
 							data,
 							selectedPals.pal2?.CodeName
 						)}`}
@@ -88,7 +88,7 @@ export const SelectPals = () => {
 				{getByParentsResult !== undefined && getByParentsResult.currentData ? (
 					<>
 						<img
-							src={`${imgURLBase}${findImageByName(
+							src={`${imgURLBase}${findImageByCodeName(
 								data,
 								getByParentsResult.currentData![0].CodeName
 							)}`}

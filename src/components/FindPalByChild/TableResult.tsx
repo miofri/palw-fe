@@ -21,7 +21,6 @@ export const TableResult: React.FC<{
 				pal.pal.toLowerCase().includes(filter.toLowerCase())
 			);
 			setFilterData(filterResult);
-			console.log(filterData);
 		} else {
 			setFilterData(parentsResult);
 		}
